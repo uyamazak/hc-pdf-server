@@ -1,26 +1,37 @@
 import fastify from 'fastify'
 import { getHcPages, hcPageNumGenerator } from './hc-pages'
+import { loadPDFOptionsPresets, getPDFOptionsFromPresets } from './pdf-options/'
 
+interface getQuerystring {
+  url: string
+  pdfoption?: string
+}
 
 export const app = async () => {
   const hcPages = await getHcPages()
   const pageNumGen = hcPageNumGenerator()
+  const pdfOptionPresets = await loadPDFOptionsPresets()
   const server = fastify({
     logger: {
       level: 'debug',
     } })
 
-  server.get('/', async (request, reply) => {
+  server.get<{
+    Querystring: getQuerystring;
+  }>('/', async (request, reply) => {
     const pageNo = pageNumGen.next().value
     const page = hcPages[pageNo]
+    const url = request.query.url
     await page.goto(
-      'https://www.google.com',
+      url,
       {
         timeout: 30000,
         waitUntil: ['load', 'domcontentloaded']
       }
     )
-    const buffer = await page.pdf()
+    const pdfOptionsQuery = request.query.pdfoption ?? 'A3'
+    const pdfOptions = getPDFOptionsFromPresets(pdfOptionPresets, pdfOptionsQuery)
+    const buffer = await page.pdf(pdfOptions)
     reply.headers({
       // pdf
       'Content-Type': 'application/pdf',
