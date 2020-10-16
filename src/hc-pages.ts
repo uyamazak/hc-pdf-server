@@ -20,7 +20,7 @@ export const getHcPages = async (): Promise<Page[]> => {
 export function* hcPageNumGenerator(): Generator<number> {
   let i = 0;
   while (true) {
-    if (i >= PAGES_NUM) {
+    if (i >= PAGES_NUM - 1) {
       i = 0
     } else {
       i++
