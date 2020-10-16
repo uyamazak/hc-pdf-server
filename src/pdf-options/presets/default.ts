@@ -1,6 +1,6 @@
 import { PDFOptions } from 'puppeteer'
 
-export const PDFOptionsPresets: {[key:string]: PDFOptions} = {
+export const PDFOptionsPreset: {[key:string]: PDFOptions} = {
   'A4': {
     format: 'A4',
   },

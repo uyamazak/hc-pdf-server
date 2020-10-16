@@ -1,23 +1,24 @@
 import { PDFOptions } from 'puppeteer'
-const presetsFilePath = process.env.MY_PDF_OPTION_PRESETS_FILE_PATH ?? './default-presets'
+import { PDF_OPTION_PRESET_FILE_PATH } from '../config'
 
-interface PDFOptionPresets {
+const defaultPDFOptions = {} as PDFOptions
+
+interface PDFOptionPreset {
   [key: string]: PDFOptions
 }
 
 interface PDFOptionsPresetModule {
-  PDFOptionsPresets: PDFOptionPresets
+  PDFOptionsPreset: PDFOptionPreset
 }
 
-export const loadPDFOptionsPresets = async (): Promise<PDFOptionPresets> => {
-  const presets = await import(presetsFilePath) as PDFOptionsPresetModule
-  return presets.PDFOptionsPresets
+export const loadPDFOptionsPreset = async (): Promise<PDFOptionPreset> => {
+  const Preset = await import(PDF_OPTION_PRESET_FILE_PATH) as PDFOptionsPresetModule
+  return Preset.PDFOptionsPreset
 }
 
-export const getPDFOptionsFromPresets = (presets: PDFOptionPresets, name?: string): PDFOptions => {
+export const getPDFOptionsFromPreset = (Preset: PDFOptionPreset, name?: string): PDFOptions => {
   if (!name) {
-    return {}
+    return defaultPDFOptions
   }
-  const option = presets[name] ?? {}
-  return option
+  return Preset[name] ?? defaultPDFOptions
 }
