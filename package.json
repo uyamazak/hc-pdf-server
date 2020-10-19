@@ -27,6 +27,7 @@
     "fastify": "^3.6.0",
     "fastify-autoload": "^3.0.2",
     "fastify-cli": "^2.3.0",
+    "fastify-formbody": "^5.0.0",
     "fastify-plugin": "^2.3.4",
     "puppeteer": "^5.3.1",
     "ts-node": "^9.0.0",

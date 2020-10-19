@@ -1,6 +1,6 @@
 import * as puppeteer from 'puppeteer'
 import { ChromeArgOptions, Page } from 'puppeteer'
-import { PAGES_NUM, USER_AGENT } from './config'
+import { PAGES_NUM, USER_AGENT, PAGE_TIMEOUT_MILLISECONDS } from './config'
 
 const generateLaunchOptions = (): ChromeArgOptions => {
   return {
@@ -14,6 +14,7 @@ export const getHcPages = async (): Promise<Page[]> => {
   const pages = []
   for (let i = 0; i < PAGES_NUM; i++) {
     const page = await browser.newPage()
+    page.setDefaultNavigationTimeout(PAGE_TIMEOUT_MILLISECONDS)
     if (USER_AGENT) {
       await page.setUserAgent(USER_AGENT)
     }
