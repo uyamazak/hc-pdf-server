@@ -19,6 +19,7 @@ export const getHcPages = async (): Promise<Page[]> => {
       await page.setUserAgent(USER_AGENT)
     }
     pages.push(page)
+    console.log(`page number ${i} is added`)
   }
   return pages
 }

@@ -83,6 +83,7 @@ export const app = async () => {
   }>('/', { schema: postSchema }, async (request, reply) => {
     const body = request.body
     const html = body['html'] ?? ''
+    const pdfOptionsQuery = body['pdfoption'] ?? DEFAULT_PDF_OPTION_PRESET_NAME
     console.log(html)
     if (!html) {
       reply.code(400).send({ error: 'html is required' })
@@ -90,7 +91,6 @@ export const app = async () => {
     }
     const page = getCurrentPage()
     await page.setContent(html)
-    const pdfOptionsQuery = request.query.pdfoption ?? DEFAULT_PDF_OPTION_PRESET_NAME
     const pdfOptions = getPDFOptionsFromPreset(pdfOptionsPreset, pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(getPDFHttpHeader(buffer))
