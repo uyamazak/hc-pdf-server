@@ -4,7 +4,6 @@ import { getHcPages, hcPageNumGenerator } from './hc-pages'
 import { loadPDFOptionsPreset, getPDFOptionsFromPreset } from './pdf-options/'
 import { DEFAULT_PDF_OPTION_PRESET_NAME } from './config'
 
-
 interface getQuerystring {
   url: string
   pdfoption?: string
@@ -83,12 +82,11 @@ export const app = async () => {
   }>('/', { schema: postSchema }, async (request, reply) => {
     const body = request.body
     const html = body['html'] ?? ''
-    const pdfOptionsQuery = body['pdfoption'] ?? DEFAULT_PDF_OPTION_PRESET_NAME
-    console.log(html)
     if (!html) {
       reply.code(400).send({ error: 'html is required' })
       return
     }
+    const pdfOptionsQuery = body['pdfoption'] ?? DEFAULT_PDF_OPTION_PRESET_NAME
     const page = getCurrentPage()
     await page.setContent(html)
     const pdfOptions = getPDFOptionsFromPreset(pdfOptionsPreset, pdfOptionsQuery)
@@ -97,7 +95,7 @@ export const app = async () => {
     reply.send(buffer)
   })
 
-  server.get('/pdfoptions', async (request, reply) => {
+  server.get('/pdfoptions', async (_, reply) => {
     reply.send(pdfOptionsPreset)
   })
 
