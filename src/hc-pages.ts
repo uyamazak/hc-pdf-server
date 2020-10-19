@@ -1,6 +1,7 @@
 import * as puppeteer from 'puppeteer'
 import { ChromeArgOptions, Page } from 'puppeteer'
-const PAGES_NUM = 3
+import { PAGES_NUM, USER_AGENT } from './config'
+
 const generateLaunchOptions = (): ChromeArgOptions => {
   return {
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
@@ -12,7 +13,11 @@ export const getHcPages = async (): Promise<Page[]> => {
   const browser = await puppeteer.launch(launchOptions)
   const pages = []
   for (let i = 0; i < PAGES_NUM; i++) {
-    pages.push(await browser.newPage())
+    const page = await browser.newPage()
+    if (USER_AGENT) {
+      await page.setUserAgent(USER_AGENT)
+    }
+    pages.push(page)
   }
   return pages
 }
