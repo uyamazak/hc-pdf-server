@@ -3,7 +3,12 @@ import { PAGES_NUM, USER_AGENT, PAGE_TIMEOUT_MILLISECONDS } from './config'
 
 const generateLaunchOptions = (): ChromeArgOptions => {
   return {
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-gpu',
+      '--disable-dev-shm-usage',
+    ]
   }
 }
 

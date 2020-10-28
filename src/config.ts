@@ -4,3 +4,4 @@ export const USER_AGENT = process.env.HCPDF_USER_AGENT ?? ''
 export const PAGES_NUM = Number(process.env.HCPDF_PAGES_NUM ?? '3')
 export const PAGE_TIMEOUT_MILLISECONDS = Number(process.env.HCPDF_PAGE_TIMEOUT_MILLISECONDS ?? '30000')
 export const PORT = Number(process.env.HCPDF_PORT ?? '8080')
+export const ADDRESS = process.env.HCPDF_ADDRESS ?? '127.0.0.1'
