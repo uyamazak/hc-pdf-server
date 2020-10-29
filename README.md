@@ -17,3 +17,14 @@ This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-se
 ## POST request with html parameter
 ```curl -sS http://localhost:8080 -v -d html="<html><p>hcpdf <strong>ok</strong></p></html>" -o hcpdf-post.pdf```
 
+
+# Bearer Auth
+You can enable bearer auth (default disabled) by setting your secret key to `HCPDF_BEARER_AUTH_SECRET_KEY`.
+
+```
+curl "http://127.0.0.1:8080/?url=https://google.com" -H 'Authorization: Bearer yourSecretKey' -o hcpdf-auth-get.pdf
+```
+
+more detail
+
+https://github.com/fastify/fastify-bearer-auth

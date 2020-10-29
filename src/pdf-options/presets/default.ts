@@ -1,4 +1,9 @@
+/**
+ * @see https://github.com/puppeteer/puppeteer/blob/v5.3.1/docs/api.md#pagepdfoptions
+ */
+
 import { PDFOptions } from 'puppeteer'
+import { DEFAULT_PDF_OPTION_MARGIN } from '../../config'
 export interface PDFMargin {
   top?: string | number;
   bottom?: string | number;
@@ -7,11 +12,12 @@ export interface PDFMargin {
 }
 
 const defaultMargin: PDFMargin = {
-  top: '10mm',
-  bottom: '10mm',
-  left: '10mm',
-  right: '10mm',
+  top: DEFAULT_PDF_OPTION_MARGIN,
+  bottom: DEFAULT_PDF_OPTION_MARGIN,
+  left: DEFAULT_PDF_OPTION_MARGIN,
+  right: DEFAULT_PDF_OPTION_MARGIN,
 }
+
 export const PDFOptionsPreset: {[key:string]: PDFOptions} = {
   'A4': {
     format: 'A4',
@@ -21,12 +27,12 @@ export const PDFOptionsPreset: {[key:string]: PDFOptions} = {
     format: 'A3',
     margin: defaultMargin,
   },
-  'A4Landscape': {
+  'A4L': {
     format: 'A4',
     landscape: true,
     margin: defaultMargin,
   },
-  'A3Landscape': {
+  'A3L': {
     format: 'A3',
     landscape: true,
     margin: defaultMargin,

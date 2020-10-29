@@ -1,9 +1,9 @@
 import { app } from './app'
-import { PORT, ADDRESS } from './config'
+import { SERVER_PORT, SERVER_ADDRESS } from './config'
 
 (async () => {
   const server = await app()
-  server.listen(PORT, ADDRESS, (err, address) => {
+  server.listen(SERVER_PORT, SERVER_ADDRESS, (err, address) => {
     if (err) {
       console.error(err)
       process.exit(1)

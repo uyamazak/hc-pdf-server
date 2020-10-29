@@ -1,8 +1,4 @@
 import { PDFOptions } from 'puppeteer'
-import { PDF_OPTION_PRESET_FILE_PATH } from '../config'
-
-const defaultPDFOptions = {} as PDFOptions
-
 interface PDFOptionPreset {
   [key: string]: PDFOptions
 }
@@ -10,15 +6,35 @@ interface PDFOptionPreset {
 interface PDFOptionsPresetModule {
   PDFOptionsPreset: PDFOptionPreset
 }
-
-export const loadPDFOptionsPreset = async (): Promise<PDFOptionPreset> => {
-  const Preset = await import(PDF_OPTION_PRESET_FILE_PATH) as PDFOptionsPresetModule
-  return Preset.PDFOptionsPreset
+interface PDFOptionsPresetConfig {
+  filePath: string
 }
+export class PDFOptionsPreset {
+  private preset: PDFOptionPreset
+  defaultPDFOptions = {} as PDFOptions
+  filePath: string
 
-export const getPDFOptionsFromPreset = (Preset: PDFOptionPreset, name?: string): PDFOptions => {
-  if (!name) {
-    return defaultPDFOptions
+  constructor(config: PDFOptionsPresetConfig) {
+    this.filePath = config.filePath
   }
-  return Preset[name] ?? defaultPDFOptions
+
+  async init(){
+    this.preset = await this.loadPDFOptionsPreset()
+  }
+
+  async loadPDFOptionsPreset(): Promise<PDFOptionPreset> {
+    const preset = await import(this.filePath ) as PDFOptionsPresetModule
+    return preset.PDFOptionsPreset
+  }
+
+  get(name?: string): PDFOptions {
+    if (!name) {
+      return this.defaultPDFOptions
+    }
+    if (!(name in this.preset)) {
+      console.error('PDFOptions not found name:', name)
+      return this.defaultPDFOptions
+    }
+    return this.preset[name]
+  }
 }

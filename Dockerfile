@@ -34,8 +34,10 @@ COPY src/ /app/src
 COPY package.json yarn.lock tsconfig.json tsconfig.build.json /app/
 RUN yarn build
 
+# Fastify in docker needs 0.0.0.0
+# https://github.com/fastify/fastify/issues/935
+ENV HCPDF_SERVER_ADDRESS=0.0.0.0
 
-ENV HCPDF_ADDRESS=0.0.0.0
 EXPOSE 8080
 
 CMD ["yarn", "start"]

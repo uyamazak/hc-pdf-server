@@ -1,42 +1,66 @@
 import { launch, ChromeArgOptions, Page } from 'puppeteer'
-import { PAGES_NUM, USER_AGENT, PAGE_TIMEOUT_MILLISECONDS } from './config'
 
-const generateLaunchOptions = (): ChromeArgOptions => {
-  return {
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-gpu',
-      '--disable-dev-shm-usage',
-    ]
-  }
+interface HcPageConfig {
+  PAGES_NUM: number
+  USER_AGENT: string
+  PAGE_TIMEOUT_MILLISECONDS: number
 }
+export class HCPages {
+  private pages: Page[]
+  private pageNumGenerator: Generator<number>
+  private config: HcPageConfig
 
-export const getHcPages = async (): Promise<Page[]> => {
-  const launchOptions = generateLaunchOptions()
-  const browser = await launch(launchOptions)
-  const pages = []
-  for (let i = 0; i < PAGES_NUM; i++) {
-    const page = await browser.newPage()
-    page.setDefaultNavigationTimeout(PAGE_TIMEOUT_MILLISECONDS)
-    if (USER_AGENT) {
-      await page.setUserAgent(USER_AGENT)
-    }
-    pages.push(page)
-    console.log(`page number ${i} is added`)
+  constructor(config: HcPageConfig) {
+    this.config = config
+    this.pageNumGenerator = this.hcPageNumGenerator()
   }
-  return pages
-}
 
-export function* hcPageNumGenerator(): Generator<number> {
-  let i = 0;
-  const max = PAGES_NUM - 1
-  while (true) {
-    if (i >= max) {
-      i = 0
-    } else {
-      i++
+  async init() {
+    this.pages = await this.createHcPages()
+  }
+
+  getCurrentPage() {
+    const pageNo = this.pageNumGenerator.next().value
+    return this.pages[pageNo]
+  }
+
+  private generateLaunchOptions(): ChromeArgOptions {
+    return {
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+      ]
     }
-    yield i
+  }
+
+  async createHcPages(): Promise<Page[]> {
+    const launchOptions = this.generateLaunchOptions()
+    const browser = await launch(launchOptions)
+    const pages = []
+    for (let i = 0; i < this.config.PAGES_NUM; i++) {
+      const page = await browser.newPage()
+      page.setDefaultNavigationTimeout(this.config.PAGE_TIMEOUT_MILLISECONDS)
+      if (this.config.USER_AGENT) {
+        await page.setUserAgent(this.config.USER_AGENT)
+      }
+      pages.push(page)
+      console.log(`page number ${i} is added`)
+    }
+    return pages
+  }
+
+  * hcPageNumGenerator(): Generator<number> {
+    let i = 0;
+    const max = this.config.PAGES_NUM - 1
+    while (true) {
+      if (i >= max) {
+        i = 0
+      } else {
+        i++
+      }
+      yield i
+    }
   }
 }

@@ -1,9 +1,17 @@
 import fastify from 'fastify'
 import formBody from 'fastify-formbody'
-import { getHcPages, hcPageNumGenerator } from './hc-pages'
-import { loadPDFOptionsPreset, getPDFOptionsFromPreset } from './pdf-options/'
-import { DEFAULT_PDF_OPTION_PRESET_NAME } from './config'
+import bearerAuthPlugin from 'fastify-bearer-auth'
 
+import { HCPages } from './hc-pages'
+import { PDFOptionsPreset } from './pdf-options/'
+import {
+  DEFAULT_PDF_OPTION_PRESET_NAME,
+  BEARER_AUTH_SECRET_KEY,
+  PAGES_NUM,
+  USER_AGENT,
+  PAGE_TIMEOUT_MILLISECONDS,
+  PDF_OPTION_PRESET_FILE_PATH
+} from './config'
 interface getQuerystring {
   url: string
   pdfoption?: string
@@ -40,9 +48,12 @@ const getPDFHttpHeader = (buffer: Buffer) => {
 }
 
 export const app = async () => {
-  const hcPages = await getHcPages()
-  const pageNumGen = hcPageNumGenerator()
-  const pdfOptionsPreset = await loadPDFOptionsPreset()
+  const hcPages = new HCPages({PAGES_NUM, USER_AGENT, PAGE_TIMEOUT_MILLISECONDS})
+  await hcPages.init()
+
+  const pdfOptionsPreset = new PDFOptionsPreset({ filePath: PDF_OPTION_PRESET_FILE_PATH })
+  await pdfOptionsPreset.init()
+
   const server = fastify({
     logger: {
       level: 'debug',
@@ -50,9 +61,9 @@ export const app = async () => {
   })
   server.register(formBody)
 
-  const getCurrentPage = () => {
-    const pageNo = pageNumGen.next().value
-    return hcPages[pageNo]
+  if (BEARER_AUTH_SECRET_KEY) {
+    const keys = new Set([BEARER_AUTH_SECRET_KEY])
+    server.register(bearerAuthPlugin, { keys })
   }
 
   server.get<{
@@ -63,7 +74,7 @@ export const app = async () => {
       reply.code(400).send({error: 'url is required'})
       return
     }
-    const page = getCurrentPage()
+    const page = hcPages.getCurrentPage()
     try {
       await page.goto(url)
     } catch(error) {
@@ -71,7 +82,7 @@ export const app = async () => {
       return
     }
     const pdfOptionsQuery = request.query.pdfoption ?? DEFAULT_PDF_OPTION_PRESET_NAME
-    const pdfOptions = getPDFOptionsFromPreset(pdfOptionsPreset, pdfOptionsQuery)
+    const pdfOptions = pdfOptionsPreset.get(pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(getPDFHttpHeader(buffer))
     reply.send(buffer)
@@ -87,9 +98,9 @@ export const app = async () => {
       return
     }
     const pdfOptionsQuery = body['pdfoption'] ?? DEFAULT_PDF_OPTION_PRESET_NAME
-    const page = getCurrentPage()
+    const page = hcPages.getCurrentPage()
     await page.setContent(html)
-    const pdfOptions = getPDFOptionsFromPreset(pdfOptionsPreset, pdfOptionsQuery)
+    const pdfOptions = pdfOptionsPreset.get(pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(getPDFHttpHeader(buffer))
     reply.send(buffer)
