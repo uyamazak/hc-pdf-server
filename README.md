@@ -18,6 +18,32 @@ This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-se
 ```curl -sS http://localhost:8080 -v -d html="<html><p>hcpdf <strong>ok</strong></p></html>" -o hcpdf-post.pdf```
 
 
+
+# Docker
+
+```
+docker build -t hc-pdf-server:latest .
+```
+
+```
+docker run -it -p 8080:8080 hc-pdf-server:latest
+```
+
+# Local (for development use)
+Install yarn.
+
+```
+yarn install
+```
+
+```
+yarn dev
+```
+
+```
+yarn start
+```
+
 # Bearer Auth
 You can enable bearer auth (default disabled) by setting your secret key to `HCPDF_BEARER_AUTH_SECRET_KEY`.
 

@@ -4,6 +4,8 @@ interface HcPageConfig {
   PAGES_NUM: number
   USER_AGENT: string
   PAGE_TIMEOUT_MILLISECONDS: number
+  EMULATE_MEDIA_TYPE_SCREEN: string
+  ACCEPT_LANGUAGE: string
 }
 export class HCPages {
   private pages: Page[]
@@ -39,14 +41,29 @@ export class HCPages {
     const launchOptions = this.generateLaunchOptions()
     const browser = await launch(launchOptions)
     const pages = []
+    const {
+      PAGE_TIMEOUT_MILLISECONDS,
+      USER_AGENT,
+      EMULATE_MEDIA_TYPE_SCREEN,
+      ACCEPT_LANGUAGE
+    } = this.config
     for (let i = 0; i < this.config.PAGES_NUM; i++) {
       const page = await browser.newPage()
-      page.setDefaultNavigationTimeout(this.config.PAGE_TIMEOUT_MILLISECONDS)
-      if (this.config.USER_AGENT) {
-        await page.setUserAgent(this.config.USER_AGENT)
+      page.setDefaultNavigationTimeout(PAGE_TIMEOUT_MILLISECONDS)
+      if (USER_AGENT) {
+        console.log(`user agent set ${USER_AGENT}`)
+        await page.setUserAgent(USER_AGENT)
       }
+      if (EMULATE_MEDIA_TYPE_SCREEN === 'true') {
+        console.log(`emulateMediaType screen`)
+        await page.emulateMediaType('screen')
+      }
+      if (ACCEPT_LANGUAGE) {
+        console.log(`Accept-Language set: ${ACCEPT_LANGUAGE}`)
+        await page.setExtraHTTPHeaders({'Accept-Language': ACCEPT_LANGUAGE})
+      }
+      console.log(`page number ${i} is created`)
       pages.push(page)
-      console.log(`page number ${i} is added`)
     }
     return pages
   }

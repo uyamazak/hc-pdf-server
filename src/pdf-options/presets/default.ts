@@ -22,19 +22,23 @@ export const PDFOptionsPreset: {[key:string]: PDFOptions} = {
   'A4': {
     format: 'A4',
     margin: defaultMargin,
+    printBackground: true,
   },
   'A3': {
     format: 'A3',
     margin: defaultMargin,
+    printBackground: true,
   },
   'A4L': {
     format: 'A4',
     landscape: true,
     margin: defaultMargin,
+    printBackground: true,
   },
   'A3L': {
     format: 'A3',
     landscape: true,
     margin: defaultMargin,
+    printBackground: true,
   }
 }

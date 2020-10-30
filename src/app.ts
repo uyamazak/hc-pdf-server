@@ -10,7 +10,9 @@ import {
   PAGES_NUM,
   USER_AGENT,
   PAGE_TIMEOUT_MILLISECONDS,
-  PDF_OPTION_PRESET_FILE_PATH
+  PDF_OPTION_PRESET_FILE_PATH,
+  EMULATE_MEDIA_TYPE_SCREEN,
+  ACCEPT_LANGUAGE
 } from './config'
 interface getQuerystring {
   url: string
@@ -48,7 +50,13 @@ const getPDFHttpHeader = (buffer: Buffer) => {
 }
 
 export const app = async () => {
-  const hcPages = new HCPages({PAGES_NUM, USER_AGENT, PAGE_TIMEOUT_MILLISECONDS})
+  const hcPages = new HCPages({
+    PAGES_NUM,
+    USER_AGENT,
+    PAGE_TIMEOUT_MILLISECONDS,
+    EMULATE_MEDIA_TYPE_SCREEN,
+    ACCEPT_LANGUAGE,
+  })
   await hcPages.init()
 
   const pdfOptionsPreset = new PDFOptionsPreset({ filePath: PDF_OPTION_PRESET_FILE_PATH })
@@ -99,7 +107,7 @@ export const app = async () => {
     }
     const pdfOptionsQuery = body['pdfoption'] ?? DEFAULT_PDF_OPTION_PRESET_NAME
     const page = hcPages.getCurrentPage()
-    await page.setContent(html)
+    await page.setContent(html, {waitUntil: ['domcontentloaded',]})
     const pdfOptions = pdfOptionsPreset.get(pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(getPDFHttpHeader(buffer))
@@ -107,7 +115,7 @@ export const app = async () => {
   })
 
   server.get('/pdfoptions', async (_, reply) => {
-    reply.send(pdfOptionsPreset)
+    reply.send(pdfOptionsPreset.preset)
   })
 
   return server

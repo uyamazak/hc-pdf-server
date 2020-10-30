@@ -10,7 +10,7 @@ interface PDFOptionsPresetConfig {
   filePath: string
 }
 export class PDFOptionsPreset {
-  private preset: PDFOptionPreset
+  preset: PDFOptionPreset
   defaultPDFOptions = {} as PDFOptions
   filePath: string
 

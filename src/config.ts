@@ -7,3 +7,5 @@ export const PAGE_TIMEOUT_MILLISECONDS = Number(process.env.HCPDF_PAGE_TIMEOUT_M
 export const SERVER_PORT = Number(process.env.HCPDF_SERVER_PORT ?? '8080')
 export const SERVER_ADDRESS = process.env.HCPDF_SERVER_ADDRESS ?? '127.0.0.1'
 export const BEARER_AUTH_SECRET_KEY = process.env.HCPDF_BEARER_AUTH_SECRET_KEY ?? ''
+export const EMULATE_MEDIA_TYPE_SCREEN = process.env.HCPDF_EMULATE_MEDIA_TYPE_SCREEN ?? ''
+export const ACCEPT_LANGUAGE = process.env.HCPDF_ACCEPT_LANGUAGE ?? ''
