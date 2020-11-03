@@ -15,6 +15,9 @@ export class PDFOptionsPreset {
   filePath: string
 
   constructor(config: PDFOptionsPresetConfig) {
+    if (!config.filePath) {
+      throw new Error('filePath is empty')
+    }
     this.filePath = config.filePath
   }
 
