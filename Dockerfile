@@ -42,6 +42,15 @@ RUN apk add --no-cache \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
+WORKDIR /app
+COPY --from=package_install /app/node_modules /app/node_modules
+COPY src/ /app/src
+COPY test/ /app/test
+COPY package.json yarn.lock tsconfig.json tsconfig.build.json /app/
+RUN yarn build
+
+EXPOSE 8080
+
 # Add user so we don't need --no-sandbox.
 RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
   && mkdir -p /home/pptruser/Downloads /app \
@@ -50,13 +59,5 @@ RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
 
 # Run everything after as non-privileged user.
 USER pptruser
-
-WORKDIR /app
-COPY --from=package_install /app/node_modules /app/node_modules
-COPY src/ /app/src
-COPY package.json yarn.lock tsconfig.json tsconfig.build.json /app/
-RUN yarn build
-
-EXPOSE 8080
 
 CMD ["yarn", "start"]
