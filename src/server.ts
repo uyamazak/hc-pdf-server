@@ -1,7 +1,6 @@
 import { app } from './app'
 import { SERVER_PORT, SERVER_ADDRESS } from './config'
-
-(async () => {
+;(async () => {
   const server = await app()
   server.listen(SERVER_PORT, SERVER_ADDRESS, (err, address) => {
     if (err) {

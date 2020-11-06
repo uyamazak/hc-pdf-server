@@ -4,11 +4,12 @@
 
 import { PDFOptions } from 'puppeteer'
 import { DEFAULT_PDF_OPTION_MARGIN } from '../../config'
+
 export interface PDFMargin {
-  top?: string | number;
-  bottom?: string | number;
-  left?: string | number;
-  right?: string | number;
+  top?: string | number
+  bottom?: string | number
+  left?: string | number
+  right?: string | number
 }
 
 const defaultMargin: PDFMargin = {
@@ -18,27 +19,27 @@ const defaultMargin: PDFMargin = {
   right: DEFAULT_PDF_OPTION_MARGIN,
 }
 
-export const PDFOptionsPreset: {[key:string]: PDFOptions} = {
-  'A4': {
+export const PDFOptionsPreset: { [key: string]: PDFOptions } = {
+  A4: {
     format: 'A4',
     margin: defaultMargin,
     printBackground: true,
   },
-  'A3': {
+  A3: {
     format: 'A3',
     margin: defaultMargin,
     printBackground: true,
   },
-  'A4L': {
+  A4L: {
     format: 'A4',
     landscape: true,
     margin: defaultMargin,
     printBackground: true,
   },
-  'A3L': {
+  A3L: {
     format: 'A3',
     landscape: true,
     margin: defaultMargin,
     printBackground: true,
-  }
+  },
 }

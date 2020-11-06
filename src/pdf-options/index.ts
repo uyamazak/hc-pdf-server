@@ -1,4 +1,5 @@
 import { PDFOptions } from 'puppeteer'
+
 interface PDFOptionPreset {
   [key: string]: PDFOptions
 }
@@ -11,7 +12,9 @@ interface PDFOptionsPresetConfig {
 }
 export class PDFOptionsPreset {
   preset: PDFOptionPreset
+
   defaultPDFOptions = {} as PDFOptions
+
   filePath: string
 
   constructor(config: PDFOptionsPresetConfig) {
@@ -21,12 +24,12 @@ export class PDFOptionsPreset {
     this.filePath = config.filePath
   }
 
-  async init(){
+  async init(): Promise<void> {
     this.preset = await this.loadPDFOptionsPreset()
   }
 
   async loadPDFOptionsPreset(): Promise<PDFOptionPreset> {
-    const preset = await import(this.filePath ) as PDFOptionsPresetModule
+    const preset = (await import(this.filePath)) as PDFOptionsPresetModule
     return preset.PDFOptionsPreset
   }
 

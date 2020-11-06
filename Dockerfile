@@ -11,21 +11,13 @@ FROM node:14.15.0-alpine3.12
 # https://github.com/fastify/fastify/issues/935
 ENV HCPDF_SERVER_ADDRESS=0.0.0.0
 
-# Locale settings (ex. Japanese)
-# this will affect HTTP_ACCEPT_LANGUAGE, navigator.language etc
-ENV LANG ja_JP.UTF-8
-
 # Font settings
 RUN apk update && \
   apk add --no-cache fontconfig
 
-# Install fonts files
-COPY fonts/* /usr/share/fonts/
-
-# OR install font by apk https://wiki.alpinelinux.org/wiki/Fonts
+# Install font by apk https://wiki.alpinelinux.org/wiki/Fonts
+ARG ADDITONAL_FONTS=""
 # RUN apk add font-noto-cjk
-
-RUN fc-cache -fv
 
 # https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#running-puppeteer-in-docker
 # Installs latest Chromium (85) package.
@@ -36,7 +28,11 @@ RUN apk add --no-cache \
   freetype-dev \
   harfbuzz \
   ca-certificates \
-  ttf-freefont
+  ttf-freefont ${ADDITONAL_FONTS}
+
+# Install fonts from files
+COPY fonts/* /usr/share/fonts/
+RUN fc-cache -fv
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
