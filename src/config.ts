@@ -31,6 +31,12 @@ export const BEARER_AUTH_SECRET_KEY =
   process.env.HCPDF_BEARER_AUTH_SECRET_KEY ?? ''
 
 /**
+ * Fastify
+ * https://www.fastify.io/docs/latest/Logging/
+ */
+export const FASTIFY_LOG_LEVEL = process.env.HCPDF_FASTIFY_LOG_LEVEL ?? 'info'
+
+/**
  * Testing
  */
 export const TEST_TARGET_URL =

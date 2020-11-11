@@ -12,6 +12,7 @@ import {
   PDF_OPTION_PRESET_FILE_PATH,
   EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   ACCEPT_LANGUAGE,
+  FASTIFY_LOG_LEVEL,
 } from './config'
 
 interface getQuerystring {
@@ -32,7 +33,7 @@ const getSchema = {
 }
 
 const postSchema = {
-  querystring: {
+  body: {
     html: { type: 'string' },
     pdfoption: { type: ['null', 'string'] },
   },
@@ -55,6 +56,7 @@ interface AppConfig {
   pdfOptionPresetFilePath: string
   emulateMediaTypeScreenEnabled: string
   acceptLanguage: string
+  fastifyLogLevel: string
 }
 
 const defaultAppConfig: AppConfig = {
@@ -66,6 +68,7 @@ const defaultAppConfig: AppConfig = {
   pdfOptionPresetFilePath: PDF_OPTION_PRESET_FILE_PATH,
   emulateMediaTypeScreenEnabled: EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   acceptLanguage: ACCEPT_LANGUAGE,
+  fastifyLogLevel: FASTIFY_LOG_LEVEL,
 }
 
 export const app = async (
@@ -80,6 +83,7 @@ export const app = async (
     pdfOptionPresetFilePath,
     emulateMediaTypeScreenEnabled,
     acceptLanguage,
+    fastifyLogLevel,
   } = { ...defaultAppConfig, ...appConfig }
 
   const pdfOptionsPreset = new PDFOptionsPreset({
@@ -89,7 +93,7 @@ export const app = async (
 
   const server = fastify({
     logger: {
-      level: 'debug',
+      level: fastifyLogLevel,
     },
   })
   server.register(formBody)
@@ -129,8 +133,10 @@ export const app = async (
     reply.send(buffer)
   })
 
-  server.post('/', { schema: postSchema }, async (request, reply) => {
-    const body = (request.body as postBody) ?? null
+  server.post<{
+    Body: postBody
+  }>('/', { schema: postSchema }, async (request, reply) => {
+    const body = request.body ?? null
     if (!body) {
       reply.code(400).send({ error: 'request body is empty' })
       return

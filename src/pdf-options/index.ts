@@ -12,9 +12,7 @@ interface PDFOptionsPresetConfig {
 }
 export class PDFOptionsPreset {
   preset: PDFOptionPreset
-
   defaultPDFOptions = {} as PDFOptions
-
   filePath: string
 
   constructor(config: PDFOptionsPresetConfig) {

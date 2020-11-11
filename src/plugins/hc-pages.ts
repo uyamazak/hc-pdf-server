@@ -2,13 +2,6 @@ import { FastifyInstance } from 'fastify'
 import { launch, ChromeArgOptions, Page, Browser } from 'puppeteer'
 import fp from 'fastify-plugin'
 
-declare module 'fastify' {
-  interface FastifyInstance {
-    getHcPage(): Page
-    destoroyHcPages(): Promise<void>
-  }
-}
-
 interface HcPageConfig {
   pagesNum: number
   userAgent: string
@@ -19,11 +12,8 @@ interface HcPageConfig {
 
 export class HCPages {
   private pages: Page[]
-
   private pageNumGenerator: Generator<number>
-
   private config: HcPageConfig
-
   private browser: Browser
 
   constructor(config: HcPageConfig) {
@@ -34,6 +24,8 @@ export class HCPages {
   async init(): Promise<void> {
     const launchOptions = this.generateLaunchOptions()
     this.browser = await launch(launchOptions)
+    const browserVersion = await this.browser.version()
+    console.log(`browser.verison is ${browserVersion}`)
     this.pages = await this.createPages()
   }
 
@@ -114,6 +106,13 @@ export class HCPages {
       }
       yield pageNum++
     }
+  }
+}
+
+declare module 'fastify' {
+  interface FastifyInstance {
+    getHcPage(): Page
+    destoroyHcPages(): Promise<void>
   }
 }
 

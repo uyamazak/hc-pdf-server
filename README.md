@@ -19,7 +19,7 @@ This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-se
 ## Clone
 git clone this repository.
 
-You can try it in two ways: docker or local
+You can try it in 2 ways: docker or local
 
 ## 1. With docker
 
@@ -143,10 +143,10 @@ $ curl http://localhost:8080/pdfoptions
 You can enable bearer auth (default disabled) by setting your secret key to `HCPDF_BEARER_AUTH_SECRET_KEY`.
 
 ```zsh
-curl "http://localhost:8080/?url=https://google.com" -H 'Authorization: Bearer yourSecretKey' -o hcpdf-auth-get.pdf
+curl "http://localhost:8080/?url=http://example.com" -H 'Authorization: Bearer yourSecretKey' -o hcpdf-auth-get.pdf
 ```
 
-This feature uses the following plugins Details are below.
+This feature uses the following the plugin. Details are below.
 
 https://github.com/fastify/fastify-bearer-auth
 
@@ -161,7 +161,7 @@ Various settings can be changed by environment variables. See the following file
 ## Local
 
 ```zsh
-# test use comnpiled js files, you need build before test
+# Because test use comnpiled js files, you need build before test
 yarn build
 
 yarn test
@@ -175,7 +175,7 @@ docker run hc-pdf-server:latest yarn test
 ```
 
 # Contributing
-Pull requests , Issues, [GitHub Sponsors](https://github.com/sponsors/uyamazak/) are welcome.
+Pull requests, Issues, [GitHub Sponsors](https://github.com/sponsors/uyamazak/) are welcome.
 
 
 # License
