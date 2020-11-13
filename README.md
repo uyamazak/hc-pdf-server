@@ -1,4 +1,4 @@
-![ci](https://github.com/uyamazak/hc-pdf-server/workflows/ci/badge.svg)
+[![ci](https://github.com/uyamazak/hc-pdf-server/workflows/ci/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3Aci)
 
 # hc-pdf-server
 
