@@ -1,6 +1,6 @@
 # hc-pdf-server
 
-Simple and fast PDF rendering server by Headless Chrome.
+Simple and fast PDF rendering server by Headless Chrome (Chromium).
 
 GET URL or POST HTML returns PDF binary.
 
@@ -9,7 +9,7 @@ This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-se
 ## New features compared to hcep-pdf-server
 
 - Writing in TypeScript
-- Use Fasity https://www.fastify.io/ for speed
+- Use Fasity https://www.fastify.io/ instead of Express for native TypeScript support and speed
 - Use alpine for less image size in Docker
 - You can Change User Agent and Accept Language etc with env
 - Bearer token authorization Support
@@ -19,34 +19,33 @@ This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-se
 ## Clone
 git clone this repository.
 
-You can try it in 2 ways: *docker* or *local*
+You can try it in 2 ways: 1.`Docker` or 2.`Local`
 
-## 1. With docker
+## 1. Docker
 
 ### Requirement
 You need install docker.
 
 https://docs.docker.com/get-docker/
 
-```zsh
-docker build -t hc-pdf-server:latest .
-```
-
-```zsh
-docker run -it -p 8080:8080 hc-pdf-server:latest
-```
 
 ### Install Fonts (optionary)
-If you convert pages in Japanese, Chinese or languages other than English with Docker.
+If you wanto to convert pages in Japanese, Chinese or languages other than English with Docker.
 You will need to install each font files.
 Also, you can use WEB fonts, but since it takes a long time for requesting and downloading them,
 we recommend that install the font files in the server.
 
 #### 1. From font file
-Add your font files (ex. *.otf) to `fonts/` dir. And build image.
+Add your font files (ex. *.otf) to `fonts/` dir.
 
 ```zsh
 cp AnyFonts.ttf ./fonts/
+```
+
+And build image.
+
+```zsh
+docker build -t hc-pdf-server:latest .
 ```
 
 #### 2. From apk package
@@ -67,6 +66,12 @@ docker build \
   -t hc-pdf-server:latest .
 ```
 
+
+### Run
+```zsh
+docker run -it -p 8080:8080 hc-pdf-server:latest
+```
+
 ## 2. Local (for development use)
 
 ### Requirement
@@ -83,6 +88,11 @@ yarn install
 start dev server
 ```zsh
 yarn dev
+```
+
+lint and fix
+```zsh
+yarn lint
 ```
 
 compile ts files
@@ -102,7 +112,7 @@ yarn start
 ```zsh
 curl "http://localhost:8080?url=http://example.com" -o hcpdf-get.pdf
 ```
-[sample](/doc/pdf-samples/hcpdf-get.pdf)
+[hcpdf-get.pdf](/docs/pdf-samples/hcpdf-get.pdf)
 
 ## POST request with html parameter
 ```zsh
@@ -110,9 +120,9 @@ curl -sS http://localhost:8080 -v \
   -d html="<html><p>hcpdf <strong>ok</strong></p></html>"\
   -o hcpdf-post.pdf
 ```
-[sample](/doc/pdf-samples/hcpdf-post.pdf)
+[hcpdf-post.pdf](/docs/pdf-samples/hcpdf-post.pdf)
 
-# PDF Options
+# Change PDF options by preset name
 
 The Puppeteer's PDF options are flexible and complex.
 
@@ -122,12 +132,15 @@ Just pass the preset names (Object's keys) you have prepared as `pdfoptions` and
 
 The default presets are below.
 
-[src/pdf-options/presets/defaults.ts](src/pdf-options/presets/defaults.ts)
+[src/pdf-options/presets/default.ts](src/pdf-options/presets/defaults.ts)
 
 You can extend it or create another file and switch it by environment variables.
 
 ```zsh
 # make file
+cp src/pdf-options/presets/my-preset.sample.ts src/pdf-options/presets/my-preset.ts
+
+# edit
 vim src/pdf-options/presets/my-preset.ts
 
 # and set env example with dorcker run
@@ -150,9 +163,17 @@ $ curl http://localhost:8080/pdfoptions
 
 
 # Bearer Authorization
-You can enable bearer auth (default disabled) by setting your secret key to `HCPDF_BEARER_AUTH_SECRET_KEY`.
+You can enable bearer auth by setting your secret key to `HCPDF_BEARER_AUTH_SECRET_KEY` (default empty, disabled) .
+
+This application is dangerous because it can manipulate Chrome.
+
+It is recommended that you use this option to control access to it when you place it on a global network.
 
 ```zsh
+docker run -it -p 8080:8080 \
+  -e HCPDF_BEARER_AUTH_SECRET_KEY='yourSecretKey' \
+  hc-pdf-server:latest
+
 curl "http://localhost:8080/?url=http://example.com" \
   -H 'Authorization: Bearer yourSecretKey' \
   -o hcpdf-auth-get.pdf
@@ -194,7 +215,7 @@ yarn test
 ```
 
 ### Result example
-![test result example](doc/img/test-result.png)
+![test result example](docs/img/test-result.png)
 
 
 ## Docker

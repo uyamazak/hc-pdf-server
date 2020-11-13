@@ -13,6 +13,7 @@ import {
   EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   ACCEPT_LANGUAGE,
   FASTIFY_LOG_LEVEL,
+  FASTIFY_BODY_LIMIT,
 } from './config'
 
 interface getQuerystring {
@@ -57,6 +58,7 @@ interface AppConfig {
   emulateMediaTypeScreenEnabled: string
   acceptLanguage: string
   fastifyLogLevel: string
+  fastifyBodyLimit: number
 }
 
 const defaultAppConfig: AppConfig = {
@@ -69,6 +71,7 @@ const defaultAppConfig: AppConfig = {
   emulateMediaTypeScreenEnabled: EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   acceptLanguage: ACCEPT_LANGUAGE,
   fastifyLogLevel: FASTIFY_LOG_LEVEL,
+  fastifyBodyLimit: FASTIFY_BODY_LIMIT,
 }
 
 export const app = async (
@@ -84,6 +87,7 @@ export const app = async (
     emulateMediaTypeScreenEnabled,
     acceptLanguage,
     fastifyLogLevel,
+    fastifyBodyLimit,
   } = { ...defaultAppConfig, ...appConfig }
 
   const pdfOptionsPreset = new PDFOptionsPreset({
@@ -92,9 +96,8 @@ export const app = async (
   await pdfOptionsPreset.init()
 
   const server = fastify({
-    logger: {
-      level: fastifyLogLevel,
-    },
+    logger: { level: fastifyLogLevel },
+    bodyLimit: fastifyBodyLimit,
   })
   server.register(formBody)
   server.register(hcPagesPlugin, {
