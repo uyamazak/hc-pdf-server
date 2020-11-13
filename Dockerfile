@@ -1,4 +1,6 @@
 FROM node:15-alpine3.12 as package_install
+LABEL maintainer="yu.yamazaki85@gmail.com"
+
 COPY package.json yarn.lock /app/
 WORKDIR /app
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
@@ -8,6 +10,7 @@ RUN yarn install --frozen-lockfile
 
 
 FROM node:15-alpine3.12
+LABEL maintainer="yu.yamazaki85@gmail.com"
 
 # Fastify in docker needs 0.0.0.0
 # https://github.com/fastify/fastify/issues/935
