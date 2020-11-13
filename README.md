@@ -1,3 +1,5 @@
+![ci](https://github.com/uyamazak/hc-pdf-server/workflows/ci/badge.svg)
+
 # hc-pdf-server
 
 Simple and fast PDF rendering server by Headless Chrome (Chromium).
