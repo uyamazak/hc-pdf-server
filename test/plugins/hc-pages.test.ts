@@ -1,7 +1,5 @@
-'use strict'
-
 import { test } from 'tap'
-import { HCPages } from '../../dist/plugins/hc-pages'
+import { HCPages } from '../../src/plugins/hc-pages'
 
 test('pageNumGenerator is working correctly', async (t) => {
   const pagesNum = 5

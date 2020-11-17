@@ -12,9 +12,9 @@ interface HcPageConfig {
 
 export class HCPages {
   private pages: Page[]
-  private pageNumGenerator: Generator<number>
   private config: HcPageConfig
   private browser: Browser
+  public pageNumGenerator: Generator<number>
 
   constructor(config: HcPageConfig) {
     this.config = config

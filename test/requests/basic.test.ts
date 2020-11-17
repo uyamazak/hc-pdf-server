@@ -1,13 +1,11 @@
-'use strict'
-
-import { test } from 'tap'
-import { app } from '../../dist/app'
-import { PDFOptionsPreset } from '../../dist/pdf-options'
+import { test, InjectOptions } from 'tap'
+import { app } from '../../src/app'
+import { PDFOptionsPreset } from '../../src/pdf-options'
 import {
   PDF_OPTION_PRESET_FILE_PATH,
   TEST_TARGET_URL,
   TEST_POST_HTML,
-} from '../../dist/config'
+} from '../../src/config'
 
 async function build(t) {
   const myApp = await app()
@@ -35,7 +33,7 @@ test('request test', async (t) => {
     const res = await app.inject({
       method: 'GET',
       url: '/pdfoptions',
-    })
+    } as InjectOptions)
     t.equal(res.payload, JSON.stringify(preset))
     t.end()
   })
@@ -50,7 +48,7 @@ test('request test', async (t) => {
         pdfoption: pdfOptionName,
         url: '',
       },
-    })
+    } as InjectOptions)
     t.equal(res.statusCode, 400)
     t.end()
   })
@@ -63,7 +61,7 @@ test('request test', async (t) => {
       query: {
         url: TEST_TARGET_URL,
       },
-    })
+    } as InjectOptions)
     t.equal(res.statusCode, 200)
     t.equal(res.headers['content-type'], 'application/pdf')
     t.end()
@@ -79,7 +77,7 @@ test('request test', async (t) => {
         pdfoption: pdfOptionName,
         url: TEST_TARGET_URL,
       },
-    })
+    } as InjectOptions)
     t.equal(res.statusCode, 200)
     t.equal(res.headers['content-type'], 'application/pdf')
     t.end()
@@ -90,7 +88,20 @@ test('request test', async (t) => {
     const res = await app.inject({
       method: 'POST',
       url: '/',
-    })
+    } as InjectOptions)
+    t.equal(res.statusCode, 400)
+    t.end()
+  })
+
+  t.test('POST / with empty html', async (t) => {
+    const app = await build(t)
+    const res = await app.inject({
+      method: 'POST',
+      url: '/',
+      body: {
+        html: '',
+      },
+    } as InjectOptions)
     t.equal(res.statusCode, 400)
     t.end()
   })
@@ -105,7 +116,7 @@ test('request test', async (t) => {
         pdfoption: pdfOptionName,
         html: TEST_POST_HTML,
       },
-    })
+    } as InjectOptions)
     t.equal(res.statusCode, 200)
     t.equal(res.headers['content-type'], 'application/pdf')
     t.end()

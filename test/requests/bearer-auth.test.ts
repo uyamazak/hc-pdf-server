@@ -1,8 +1,6 @@
-'use strict'
-
-import { test } from 'tap'
-import { app } from '../../dist/app'
-import { TEST_TARGET_URL } from '../../dist/config'
+import { test, InjectOptions } from 'tap'
+import { app } from '../../src/app'
+import { TEST_TARGET_URL } from '../../src/config'
 
 const BEARER_KEY = 'test-super-secret-key'
 
@@ -24,7 +22,7 @@ test('bearer test', async (t) => {
       query: {
         url: TEST_TARGET_URL,
       },
-    })
+    } as InjectOptions)
     t.equal(res.statusCode, 401)
     t.end()
   })

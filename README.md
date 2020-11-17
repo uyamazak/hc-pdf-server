@@ -2,7 +2,7 @@
 
 # hc-pdf-server
 
-Simple and fast PDF rendering server by Headless Chrome (Chromium).
+convert HTML to PDF server by Headless Chrome (Chromium).
 
 GET URL or POST HTML returns PDF binary.
 
@@ -169,7 +169,7 @@ You can enable bearer auth by setting your secret key to `HCPDF_BEARER_AUTH_SECR
 
 This application is dangerous because it can manipulate Chrome.
 
-It is recommended that you use this option to control access to it when you place it on a global network.
+So it is recommended that you use this option to control access to it when you place it on a global network.
 
 ```zsh
 docker run -it -p 8080:8080 \
@@ -185,7 +185,7 @@ This feature uses the following the plugin. Details are below.
 
 https://github.com/fastify/fastify-bearer-auth
 
-# Support for concurrent access
+# Support for concurrent access error
 
 In Puppeteer, if you make another request to `Page` during the PDF conversion process, it will result in an error.
 
@@ -200,19 +200,15 @@ If you increase the number of pages, the memory required will also increase, so 
 # Configs by environment variables
 
 ## Others
-Various settings can be changed by environment variables. See the following file for details.
+Other settings can be changed by environment variables. See the following file for details.
 
 [src/config.ts](src/config.ts)
-
 
 # Test
 
 ## Local
 
 ```zsh
-# Because test use comnpiled js files, you need build before test
-yarn build
-
 yarn test
 ```
 
