@@ -167,9 +167,9 @@ $ curl http://localhost:8080/pdfoptions
 # Bearer Authorization
 You can enable bearer auth by setting your secret key to `HCPDF_BEARER_AUTH_SECRET_KEY` (default empty, disabled) .
 
-This application is dangerous because it can manipulate Chrome.
+This application can be exploited if it is published on a global network, as it allows you to manipulate Chrome.
 
-So it is recommended that you use this option to control access to it when you place it on a global network.
+So it is recommended that you enable this option to control access to it when you place it on a global network.
 
 ```zsh
 docker run -it -p 8080:8080 \
