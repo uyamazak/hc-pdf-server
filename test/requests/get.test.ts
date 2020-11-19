@@ -19,7 +19,7 @@ async function getFirstPresetName() {
 }
 
 test('request test', async (t) => {
-  t.test('/pdfoptions response is match', async (t) => {
+  t.test('/pdf_options response is match', async (t) => {
     const app = await build(t)
     const pdfOptionsPreset = new PDFOptionsPreset({
       filePath: PDF_OPTION_PRESET_FILE_PATH,
@@ -28,7 +28,7 @@ test('request test', async (t) => {
     const preset = pdfOptionsPreset.preset
     const res = await app.inject({
       method: 'GET',
-      url: '/pdfoptions',
+      url: '/pdf_options',
     } as InjectOptions)
     t.equal(res.payload, JSON.stringify(preset))
     t.end()
@@ -41,7 +41,7 @@ test('request test', async (t) => {
       method: 'GET',
       url: '/',
       query: {
-        pdfoption: pdfOptionName,
+        pdf_option: pdfOptionName,
         url: '',
       },
     } as InjectOptions)
@@ -70,7 +70,7 @@ test('request test', async (t) => {
       method: 'GET',
       url: '/',
       query: {
-        pdfoption: pdfOptionName,
+        pdf_option: pdfOptionName,
         url: TEST_TARGET_URL,
       },
     } as InjectOptions)

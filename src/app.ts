@@ -158,7 +158,7 @@ export const app = async (
     reply.send(buffer)
   })
 
-  server.get('/pdfoptions', (_, reply) => {
+  server.get('/pdf_options', (_, reply) => {
     reply.send(pdfOptionsPreset.preset)
   })
 
