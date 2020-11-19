@@ -18,25 +18,25 @@ import {
 
 interface getQuerystring {
   url: string
-  pdfoption?: string
+  pdf_option?: string
 }
 
 interface postBody {
   html: string
-  pdfoption?: string
+  pdf_option?: string
 }
 
 const getSchema = {
   querystring: {
     url: { type: 'string' },
-    pdfoption: { type: ['null', 'string'] },
+    pdf_option: { type: ['null', 'string'] },
   },
 }
 
 const postSchema = {
   body: {
     html: { type: 'string' },
-    pdfoption: { type: ['null', 'string'] },
+    pdf_option: { type: ['null', 'string'] },
   },
 }
 
@@ -129,7 +129,7 @@ export const app = async (
       return
     }
     const pdfOptionsQuery =
-      request.query.pdfoption ?? defaultPdfOptionPresetName
+      request.query.pdf_option ?? defaultPdfOptionPresetName
     const pdfOptions = pdfOptionsPreset.get(pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(createPDFHttpHeader(buffer))
@@ -149,7 +149,7 @@ export const app = async (
       reply.code(400).send({ error: 'html is required' })
       return
     }
-    const pdfOptionsQuery = body.pdfoption ?? defaultPdfOptionPresetName
+    const pdfOptionsQuery = body.pdf_option ?? defaultPdfOptionPresetName
     const page = server.getHcPage()
     await page.setContent(html, { waitUntil: ['domcontentloaded'] })
     const pdfOptions = pdfOptionsPreset.get(pdfOptionsQuery)

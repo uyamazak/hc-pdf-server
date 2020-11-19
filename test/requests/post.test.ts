@@ -49,7 +49,7 @@ test('POST request test', async (t) => {
       method: 'POST',
       url: '/',
       body: {
-        pdfoption: pdfOptionName,
+        pdf_option: pdfOptionName,
         html: TEST_POST_HTML,
       },
     } as InjectOptions)
