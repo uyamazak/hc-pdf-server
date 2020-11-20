@@ -128,9 +128,11 @@ curl -sS http://localhost:8080 -v \
 
 The Puppeteer's PDF options are flexible and complex.
 
-I thought about taking them directly as GET or POST parameters, but it's not simple, so I make with the preset method.
+I thought about taking them directly as GET or POST parameters, but it's not simple.
 
-Just pass the preset names (Object's keys) you have prepared as `pdfoptions` and you can use them.
+So I make with the preset method.
+
+Just pass the preset name as request parameter `pdf_option` that you have prepared in `PDFOptionsPreset`.
 
 The default presets are below.
 
@@ -150,6 +152,9 @@ docker run -it -p 8080:8080 \
   -e HCPDF_PDF_OPTION_PRESET_FILE_PATH='./presets/my-preset' \
   -e DEFAULT_PDF_OPTION_PRESET_NAME='MYA4' \
   hc-pdf-server:latest
+
+# request with pdf_option
+curl "http://localhost:8080?url=http://example.com&pdf_option=MYA4" -o hcpdf-get-MYA4.pdf
 ```
 
 The default is the minimum (e.g. A4, A3).
@@ -159,7 +164,7 @@ If you have something you think should be included, I'd be happy to receive a pu
 You can check what options are currently available by looking at the following path after the server starts
 
 ```zsh
-$ curl http://localhost:8080/pdfoptions
+$ curl http://localhost:8080/pdf_options
 {"A4":{"format":"A4","margin":{"top":"10mm","bottom":"10mm","left":"10mm","right":"10mm"},"printBackground":true},"A3":{"format":"A3","margin":{"top":"10mm","bottom":"10mm","left":"10mm","right":"10mm"},"printBackground":true},"A4L":{"format":"A4","landscape":true,"margin":{"top":"10mm","bottom":"10mm","left":"10mm","right":"10mm"},"printBackground":true},"A3L":{"format":"A3","landscape":true,"margin":{"top":"10mm","bottom":"10mm","left":"10mm","right":"10mm"},"printBackground":true}}
 ```
 
