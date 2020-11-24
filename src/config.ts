@@ -1,3 +1,6 @@
+const toBoolean = (val: string | null) => {
+  return val === 'true'
+}
 /**
  * PDFOptions
  */
@@ -11,16 +14,18 @@ export const DEFAULT_PDF_OPTION_MARGIN =
 /**
  * Browser Page
  */
-export const USER_AGENT = process.env.HCPDF_USER_AGENT ?? ''
+export const USER_AGENT = process.env.HCPDF_USER_AGENT ?? null
 export const PAGES_NUM = Number(process.env.HCPDF_PAGES_NUM ?? '3')
 export const PAGE_TIMEOUT_MILLISECONDS = Number(
   process.env.HCPDF_PAGE_TIMEOUT_MILLISECONDS ?? '30000'
 )
-// 'true' or otherwise https://pptr.dev/#?product=Puppeteer&version=v5.4.1&show=api-pageemulatemediatypetype
-export const EMULATE_MEDIA_TYPE_SCREEN_ENABLED =
-  process.env.HCPDF_EMULATE_MEDIA_TYPE_SCREEN_ENABLED ?? ''
+// 'true' or otherwise
+// @see https://pptr.dev/#?product=Puppeteer&version=v5.5.0&show=api-pageemulatemediatypetype
+export const EMULATE_MEDIA_TYPE_SCREEN_ENABLED = toBoolean(
+  process.env.HCPDF_EMULATE_MEDIA_TYPE_SCREEN_ENABLED ?? null
+)
 // use as Accept-Language Header https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Accept-Language
-export const ACCEPT_LANGUAGE = process.env.HCPDF_ACCEPT_LANGUAGE ?? ''
+export const ACCEPT_LANGUAGE = process.env.HCPDF_ACCEPT_LANGUAGE ?? null
 
 /**
  * Server
@@ -37,7 +42,7 @@ export const FASTIFY_BODY_LIMIT = Number(
 export const FASTIFY_LOG_LEVEL = process.env.HCPDF_FASTIFY_LOG_LEVEL ?? 'info'
 // if set use as key, else disabled
 export const BEARER_AUTH_SECRET_KEY =
-  process.env.HCPDF_BEARER_AUTH_SECRET_KEY ?? ''
+  process.env.HCPDF_BEARER_AUTH_SECRET_KEY ?? null
 
 /**
  * Testing
@@ -47,3 +52,22 @@ export const TEST_TARGET_URL =
 export const TEST_POST_HTML =
   process.env.HCPDF_TEST_POST_HTML ??
   '<html><head><title>hc-pdf-sever</title></head> <body><p>this is <b>hc-pdf-server</b> test!</p></body></html>'
+
+/**
+ * viewport
+ * @see https://pptr.dev/#?product=Puppeteer&version=v5.5.0&show=api-pageviewport
+ */
+export const DEFAULT_VIEWPORT = {
+  width: Number(process.env.HCPDF_VIEWPORT_WIDTH ?? '800'),
+  height: Number(process.env.HCPDF_VIEWPORT_HEIGHT ?? '600'),
+  deviceScaleFactor: ((val) => {
+    if (val) {
+      return Number(val)
+    } else {
+      return null
+    }
+  })(process.env.HCPDF_DEVICE_SCALE_FACTOR ?? null),
+  isMobile: toBoolean(process.env.HCPDF_VIEWPORT_IS_MOBILE ?? null),
+  isLandscape: toBoolean(process.env.HCPDF_VIEWPORT_HAS_TOUCH ?? null),
+  hasTouch: toBoolean(process.env.HCPDF_VIEWPORT_IS_LANDSCAPE ?? null),
+}

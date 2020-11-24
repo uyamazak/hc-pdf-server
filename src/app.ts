@@ -14,7 +14,9 @@ import {
   ACCEPT_LANGUAGE,
   FASTIFY_LOG_LEVEL,
   FASTIFY_BODY_LIMIT,
+  DEFAULT_VIEWPORT,
 } from './config'
+import { Viewport } from 'puppeteer'
 
 interface getQuerystring {
   url: string
@@ -55,10 +57,11 @@ interface AppConfig {
   userAgent: string
   pageTimeoutMilliseconds: number
   pdfOptionPresetFilePath: string
-  emulateMediaTypeScreenEnabled: string
+  emulateMediaTypeScreenEnabled: boolean
   acceptLanguage: string
   fastifyLogLevel: string
   fastifyBodyLimit: number
+  viewport: Viewport
 }
 
 const defaultAppConfig: AppConfig = {
@@ -72,6 +75,7 @@ const defaultAppConfig: AppConfig = {
   acceptLanguage: ACCEPT_LANGUAGE,
   fastifyLogLevel: FASTIFY_LOG_LEVEL,
   fastifyBodyLimit: FASTIFY_BODY_LIMIT,
+  viewport: DEFAULT_VIEWPORT,
 }
 
 export const app = async (
@@ -88,6 +92,7 @@ export const app = async (
     acceptLanguage,
     fastifyLogLevel,
     fastifyBodyLimit,
+    viewport,
   } = { ...defaultAppConfig, ...appConfig }
 
   const pdfOptionsPreset = new PDFOptionsPreset({
