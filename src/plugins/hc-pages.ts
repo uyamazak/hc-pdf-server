@@ -1,13 +1,14 @@
 import { FastifyInstance } from 'fastify'
-import { launch, ChromeArgOptions, Page, Browser } from 'puppeteer'
+import { launch, ChromeArgOptions, Page, Browser, Viewport } from 'puppeteer'
 import fp from 'fastify-plugin'
 
 interface HcPageConfig {
   pagesNum: number
   userAgent: string
   pageTimeoutMilliseconds: number
-  emulateMediaTypeScreenEnabled: string
+  emulateMediaTypeScreenEnabled: boolean
   acceptLanguage: string
+  viewport?: Viewport
 }
 
 export class HCPages {
@@ -67,13 +68,18 @@ export class HCPages {
       userAgent,
       emulateMediaTypeScreenEnabled,
       acceptLanguage,
+      viewport,
     } = this.config
     page.setDefaultNavigationTimeout(pageTimeoutMilliseconds)
+    if (viewport) {
+      await page.setViewport(viewport)
+    }
+    console.log(`viewport set ${JSON.stringify(page.viewport())}`)
     if (userAgent) {
       console.log(`user agent set ${userAgent}`)
       await page.setUserAgent(userAgent)
     }
-    if (emulateMediaTypeScreenEnabled === 'true') {
+    if (emulateMediaTypeScreenEnabled) {
       console.log('emulateMediaType screen')
       await page.emulateMediaType('screen')
     }

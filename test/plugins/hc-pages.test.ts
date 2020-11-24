@@ -7,7 +7,7 @@ test('pageNumGenerator is working correctly', async (t) => {
     pagesNum: pagesNum,
     userAgent: '',
     pageTimeoutMilliseconds: 30000,
-    emulateMediaTypeScreenEnabled: '',
+    emulateMediaTypeScreenEnabled: false,
     acceptLanguage: '',
   })
   await hcPages.init()
@@ -32,7 +32,7 @@ test('enable options', async (t) => {
     pagesNum: pagesNum,
     userAgent: 'user_agent_test',
     pageTimeoutMilliseconds: 30000,
-    emulateMediaTypeScreenEnabled: 'true',
+    emulateMediaTypeScreenEnabled: true,
     acceptLanguage: 'ja',
   })
   await hcPages.init()
