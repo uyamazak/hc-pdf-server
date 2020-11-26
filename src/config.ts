@@ -1,16 +1,29 @@
+import { PaperFormat } from 'puppeteer/lib/cjs/puppeteer/common/PDFOptions'
+
 const toBoolean = (val: string | null) => {
   return val === 'true'
 }
 /**
  * PDFOptions
+ * @see
  */
 export const PDF_OPTION_PRESET_FILE_PATH =
   process.env.HCPDF_PDF_OPTION_PRESET_FILE_PATH ?? './presets/default'
 export const DEFAULT_PDF_OPTION_PRESET_NAME =
-  process.env.HCPDF_DEFAULT_PDF_OPTION_PRESET_NAME ?? 'A4'
+  process.env.HCPDF_DEFAULT_PDF_OPTION_PRESET_NAME ?? 'DEFAULT'
+
+export const DEFAULT_PDF_OPTION_FORMAT = (process.env
+  .HCPDF_DEFAULT_PDF_OPTION_FORMAT ?? 'A4') as PaperFormat
+
 export const DEFAULT_PDF_OPTION_MARGIN =
   process.env.HCPDF_DEFAULT_PDF_OPTION_MARGIN ?? '10mm'
 
+export const DEFAULT_PDF_OPTION_PRINT_BACKGROUND = toBoolean(
+  process.env.HCPDF_DEFAULT_PDF_OPTION_PRINT_BACKGROUND ?? null
+)
+export const DEFAULT_PDF_OPTION_LANDSCAPE = toBoolean(
+  process.env.HCPDF_DEFAULT_PDF_OPTION_LANDSCAPE ?? null
+)
 /**
  * Browser Page
  */
@@ -48,7 +61,7 @@ export const BEARER_AUTH_SECRET_KEY =
  * Testing
  */
 export const TEST_TARGET_URL =
-  process.env.HCPDF_TEST_TARGET_URL ?? 'https://www.google.com'
+  process.env.HCPDF_TEST_TARGET_URL ?? 'https://www.example.com'
 export const TEST_POST_HTML =
   process.env.HCPDF_TEST_POST_HTML ??
   '<html><head><title>hc-pdf-sever</title></head> <body><p>this is <b>hc-pdf-server</b> test!</p></body></html>'
