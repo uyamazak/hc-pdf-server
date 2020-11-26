@@ -2,15 +2,17 @@
  * @see https://github.com/puppeteer/puppeteer/blob/v5.3.1/docs/api.md#pagepdfoptions
  */
 
-import { PDFOptions } from 'puppeteer'
-import { DEFAULT_PDF_OPTION_MARGIN } from '../../config'
+import {
+  PDFMargin,
+  PDFOptions,
+} from 'puppeteer/lib/cjs/puppeteer/common/PDFOptions'
 
-export interface PDFMargin {
-  top?: string | number
-  bottom?: string | number
-  left?: string | number
-  right?: string | number
-}
+import {
+  DEFAULT_PDF_OPTION_FORMAT,
+  DEFAULT_PDF_OPTION_LANDSCAPE,
+  DEFAULT_PDF_OPTION_MARGIN,
+  DEFAULT_PDF_OPTION_PRINT_BACKGROUND,
+} from '../../config'
 
 const defaultMargin: PDFMargin = {
   top: DEFAULT_PDF_OPTION_MARGIN,
@@ -20,24 +22,30 @@ const defaultMargin: PDFMargin = {
 }
 
 export const PDFOptionsPreset: { [key: string]: PDFOptions } = {
+  DEFAULT: {
+    format: DEFAULT_PDF_OPTION_FORMAT,
+    landscape: DEFAULT_PDF_OPTION_LANDSCAPE,
+    margin: defaultMargin,
+    printBackground: DEFAULT_PDF_OPTION_PRINT_BACKGROUND,
+  },
   A4: {
-    format: 'A4',
+    format: 'a4',
     margin: defaultMargin,
     printBackground: true,
   },
   A3: {
-    format: 'A3',
+    format: 'a3',
     margin: defaultMargin,
     printBackground: true,
   },
   A4L: {
-    format: 'A4',
+    format: 'a4',
     landscape: true,
     margin: defaultMargin,
     printBackground: true,
   },
   A3L: {
-    format: 'A3',
+    format: 'a3',
     landscape: true,
     margin: defaultMargin,
     printBackground: true,
