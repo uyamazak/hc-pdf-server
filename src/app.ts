@@ -111,6 +111,7 @@ export const app = async (
     pageTimeoutMilliseconds,
     emulateMediaTypeScreenEnabled,
     acceptLanguage,
+    viewport,
   })
 
   if (bearerAuthSecretKey) {
