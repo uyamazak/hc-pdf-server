@@ -3,6 +3,14 @@ import { PaperFormat } from 'puppeteer/lib/cjs/puppeteer/common/PDFOptions'
 const toBoolean = (val: string | null) => {
   return val === 'true'
 }
+const toNumber = (val: string | null) => {
+  if (val) {
+    return Number(val)
+  } else {
+    return null
+  }
+}
+
 /**
  * PDFOptions
  * @see
@@ -67,19 +75,13 @@ export const TEST_POST_HTML =
   '<html><head><title>hc-pdf-sever</title></head> <body><p>this is <b>hc-pdf-server</b> test!</p></body></html>'
 
 /**
- * viewport
+ * Viewport
  * @see https://pptr.dev/#?product=Puppeteer&version=v5.5.0&show=api-pageviewport
  */
 export const DEFAULT_VIEWPORT = {
-  width: Number(process.env.HCPDF_VIEWPORT_WIDTH ?? '800'),
-  height: Number(process.env.HCPDF_VIEWPORT_HEIGHT ?? '600'),
-  deviceScaleFactor: ((val) => {
-    if (val) {
-      return Number(val)
-    } else {
-      return null
-    }
-  })(process.env.HCPDF_DEVICE_SCALE_FACTOR ?? null),
+  width: toNumber(process.env.HCPDF_VIEWPORT_WIDTH ?? '800'),
+  height: toNumber(process.env.HCPDF_VIEWPORT_HEIGHT ?? '600'),
+  deviceScaleFactor: toNumber(process.env.HCPDF_DEVICE_SCALE_FACTOR ?? null),
   isMobile: toBoolean(process.env.HCPDF_VIEWPORT_IS_MOBILE ?? null),
   isLandscape: toBoolean(process.env.HCPDF_VIEWPORT_HAS_TOUCH ?? null),
   hasTouch: toBoolean(process.env.HCPDF_VIEWPORT_IS_LANDSCAPE ?? null),
