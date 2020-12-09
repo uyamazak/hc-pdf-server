@@ -1,16 +1,7 @@
 import { FastifyInstance } from 'fastify'
-import { launch, ChromeArgOptions, Page, Browser, Viewport } from 'puppeteer'
+import { launch, ChromeArgOptions, Page, Browser } from 'puppeteer'
 import fp from 'fastify-plugin'
-
-interface HcPageConfig {
-  pagesNum: number
-  userAgent: string
-  pageTimeoutMilliseconds: number
-  emulateMediaTypeScreenEnabled: boolean
-  acceptLanguage: string
-  viewport?: Viewport
-}
-
+import { HcPageConfig } from '../types/hc-pages'
 export class HCPages {
   private pages: Page[]
   private config: HcPageConfig
@@ -112,13 +103,6 @@ export class HCPages {
       }
       yield pageNum++
     }
-  }
-}
-
-declare module 'fastify' {
-  interface FastifyInstance {
-    getHcPage(): Page
-    destoroyHcPages(): Promise<void>
   }
 }
 

@@ -1,7 +1,10 @@
-import { test, InjectOptions } from 'tap'
+import { test } from 'tap'
+import { InjectOptions } from 'light-my-request'
 import { app } from '../../src/app'
-import { PDFOptionsPreset } from '../../src/pdf-options'
-import { PDF_OPTION_PRESET_FILE_PATH, TEST_TARGET_URL } from '../../src/config'
+import {
+  TEST_TARGET_URL,
+  DEFAULT_PDF_OPTION_PRESET_NAME,
+} from '../../src/config'
 
 async function build(t) {
   const myApp = await app()
@@ -10,38 +13,24 @@ async function build(t) {
   return myApp
 }
 
-async function getFirstPresetName() {
-  const pdfOptionsPreset = new PDFOptionsPreset({
-    filePath: PDF_OPTION_PRESET_FILE_PATH,
-  })
-  await pdfOptionsPreset.init()
-  return Object.keys(pdfOptionsPreset.preset)[0]
-}
-
 test('request test', async (t) => {
   t.test('/pdf_options response is match', async (t) => {
     const app = await build(t)
-    const pdfOptionsPreset = new PDFOptionsPreset({
-      filePath: PDF_OPTION_PRESET_FILE_PATH,
-    })
-    await pdfOptionsPreset.init()
-    const preset = pdfOptionsPreset.preset
     const res = await app.inject({
       method: 'GET',
       url: '/pdf_options',
     } as InjectOptions)
-    t.equal(res.payload, JSON.stringify(preset))
+    t.equal(res.payload, JSON.stringify(app.getPresetPDFOptions()))
     t.end()
   })
 
   t.test('GET / without url', async (t) => {
     const app = await build(t)
-    const pdfOptionName = await getFirstPresetName()
     const res = await app.inject({
       method: 'GET',
       url: '/',
       query: {
-        pdf_option: pdfOptionName,
+        pdf_option: DEFAULT_PDF_OPTION_PRESET_NAME,
         url: '',
       },
     } as InjectOptions)
@@ -63,14 +52,13 @@ test('request test', async (t) => {
     t.end()
   })
 
-  t.test('GET / with first preset name', async (t) => {
+  t.test('GET / with default preset name', async (t) => {
     const app = await build(t)
-    const pdfOptionName = await getFirstPresetName()
     const res = await app.inject({
       method: 'GET',
       url: '/',
       query: {
-        pdf_option: pdfOptionName,
+        pdf_option: DEFAULT_PDF_OPTION_PRESET_NAME,
         url: TEST_TARGET_URL,
       },
     } as InjectOptions)
