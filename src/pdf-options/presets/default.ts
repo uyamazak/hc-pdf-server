@@ -21,7 +21,7 @@ const defaultMargin: PDFMargin = {
   right: DEFAULT_PDF_OPTION_MARGIN,
 }
 
-export const PDFOptionsPreset: { [key: string]: PDFOptions } = {
+export const PresetPDFOptions: { [key: string]: PDFOptions } = {
   DEFAULT: {
     format: DEFAULT_PDF_OPTION_FORMAT,
     landscape: DEFAULT_PDF_OPTION_LANDSCAPE,

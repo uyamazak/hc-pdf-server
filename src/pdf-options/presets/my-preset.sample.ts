@@ -4,7 +4,7 @@
 
 import { PDFOptions } from 'puppeteer/lib/cjs/puppeteer/common/PDFOptions'
 
-export const PDFOptionsPreset: { [key: string]: PDFOptions } = {
+export const PresetPDFOptions: { [key: string]: PDFOptions } = {
   MYA4: {
     format: 'a4',
   },

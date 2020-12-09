@@ -11,12 +11,12 @@ interface postBody {
 }
 
 interface AppConfig {
-  defaultPdfOptionPresetName: string
+  presetPdfOptionsFilePath: string
+  defaultPresetPdfOptionsName: string
   bearerAuthSecretKey: string
   pagesNum: number
   userAgent: string
   pageTimeoutMilliseconds: number
-  pdfOptionPresetFilePath: string
   emulateMediaTypeScreenEnabled: boolean
   acceptLanguage: string
   fastifyLogLevel: string

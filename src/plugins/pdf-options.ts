@@ -3,7 +3,7 @@ import { FastifyInstance } from 'fastify'
 import fp from 'fastify-plugin'
 import {
   PresetPDFOptions,
-  PresetPDFOptionsConfig,
+  PresetPDFOptionsLoaderConfig,
   PresetPDFOptionsModule,
 } from '../types/pdf-options'
 
@@ -12,7 +12,7 @@ export class PresetPDFOptionsLoader {
   defaultPDFOptions = {} as PDFOptions
   filePath: string
 
-  constructor(config: PresetPDFOptionsConfig) {
+  constructor(config: PresetPDFOptionsLoaderConfig) {
     if (!config.filePath) {
       throw new Error('filePath is empty')
     }
@@ -42,16 +42,16 @@ export class PresetPDFOptionsLoader {
 
 async function plugin(
   fastify: FastifyInstance,
-  options: PresetPDFOptionsConfig,
+  options: PresetPDFOptionsLoaderConfig,
   next: (err?: Error) => void
 ) {
-  const pdfOptionsPreset = new PresetPDFOptionsLoader(options)
-  await pdfOptionsPreset.init()
+  const presetPDFOptionsLoader = new PresetPDFOptionsLoader(options)
+  await presetPDFOptionsLoader.init()
   fastify.decorate('getPDFOptions', (name?: string) => {
-    return pdfOptionsPreset.get(name)
+    return presetPDFOptionsLoader.get(name)
   })
-  fastify.decorate('getPDFOptionsPreset', () => {
-    return pdfOptionsPreset.preset
+  fastify.decorate('getPresetPDFOptions', () => {
+    return presetPDFOptionsLoader.preset
   })
   next()
 }

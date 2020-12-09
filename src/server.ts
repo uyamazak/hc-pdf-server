@@ -7,6 +7,6 @@ import { SERVER_PORT, SERVER_ADDRESS } from './config'
       console.error(err)
       process.exit(1)
     }
-    console.log(`Server listening at ${address}:${SERVER_PORT}`)
+    console.log(`Server listening at ${address}`)
   })
 })()

@@ -15,11 +15,11 @@ const toNumber = (val: string | undefined) => {
  * PDFOptions
  * @see
  */
-export const PDF_OPTION_PRESET_FILE_PATH =
-  process.env.HCPDF_PDF_OPTION_PRESET_FILE_PATH ??
+export const PRESET_PDF_OPTIONS_FILE_PATH =
+  process.env.HCPDF_PRESET_PDF_OPTIONS_FILE_PATH ??
   '../pdf-options/presets/default'
-export const DEFAULT_PDF_OPTION_PRESET_NAME =
-  process.env.HCPDF_DEFAULT_PDF_OPTION_PRESET_NAME ?? 'DEFAULT'
+export const DEFAULT_PRESET_PDF_OPTIONS_NAME =
+  process.env.HCPDF_DEFAULT_PRESET_PDF_OPTIONS_NAME ?? 'DEFAULT'
 
 export const DEFAULT_PDF_OPTION_FORMAT = (process.env
   .HCPDF_DEFAULT_PDF_OPTION_FORMAT ?? 'a4') as PaperFormat

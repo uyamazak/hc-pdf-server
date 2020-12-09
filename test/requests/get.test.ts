@@ -3,7 +3,7 @@ import { InjectOptions } from 'light-my-request'
 import { app } from '../../src/app'
 import {
   TEST_TARGET_URL,
-  DEFAULT_PDF_OPTION_PRESET_NAME,
+  DEFAULT_PRESET_PDF_OPTIONS_NAME,
 } from '../../src/config'
 
 async function build(t) {
@@ -30,7 +30,7 @@ test('request test', async (t) => {
       method: 'GET',
       url: '/',
       query: {
-        pdf_option: DEFAULT_PDF_OPTION_PRESET_NAME,
+        pdf_option: DEFAULT_PRESET_PDF_OPTIONS_NAME,
         url: '',
       },
     } as InjectOptions)
@@ -58,7 +58,7 @@ test('request test', async (t) => {
       method: 'GET',
       url: '/',
       query: {
-        pdf_option: DEFAULT_PDF_OPTION_PRESET_NAME,
+        pdf_option: DEFAULT_PRESET_PDF_OPTIONS_NAME,
         url: TEST_TARGET_URL,
       },
     } as InjectOptions)

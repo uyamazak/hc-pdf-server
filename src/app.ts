@@ -5,12 +5,12 @@ import { hcPagesPlugin } from './plugins/hc-pages'
 import { hcPDFOptionsPlugin } from './plugins/pdf-options'
 import { AppConfig, getQuerystring, postBody } from './types/hc-pdf-server'
 import {
-  DEFAULT_PDF_OPTION_PRESET_NAME,
+  DEFAULT_PRESET_PDF_OPTIONS_NAME,
   BEARER_AUTH_SECRET_KEY,
   PAGES_NUM,
   USER_AGENT,
   PAGE_TIMEOUT_MILLISECONDS,
-  PDF_OPTION_PRESET_FILE_PATH,
+  PRESET_PDF_OPTIONS_FILE_PATH,
   EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   ACCEPT_LANGUAGE,
   FASTIFY_LOG_LEVEL,
@@ -42,12 +42,12 @@ const createPDFHttpHeader = (buffer: Buffer) => ({
 })
 
 const defaultAppConfig: AppConfig = {
-  defaultPdfOptionPresetName: DEFAULT_PDF_OPTION_PRESET_NAME,
+  presetPdfOptionsFilePath: PRESET_PDF_OPTIONS_FILE_PATH,
+  defaultPresetPdfOptionsName: DEFAULT_PRESET_PDF_OPTIONS_NAME,
   bearerAuthSecretKey: BEARER_AUTH_SECRET_KEY,
   pagesNum: PAGES_NUM,
   userAgent: USER_AGENT,
   pageTimeoutMilliseconds: PAGE_TIMEOUT_MILLISECONDS,
-  pdfOptionPresetFilePath: PDF_OPTION_PRESET_FILE_PATH,
   emulateMediaTypeScreenEnabled: EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   acceptLanguage: ACCEPT_LANGUAGE,
   fastifyLogLevel: FASTIFY_LOG_LEVEL,
@@ -59,12 +59,12 @@ export const app = async (
   appConfig = {} as Partial<AppConfig>
 ): Promise<FastifyInstance> => {
   const {
-    defaultPdfOptionPresetName,
+    presetPdfOptionsFilePath,
+    defaultPresetPdfOptionsName,
     bearerAuthSecretKey,
     pagesNum,
     userAgent,
     pageTimeoutMilliseconds,
-    pdfOptionPresetFilePath,
     emulateMediaTypeScreenEnabled,
     acceptLanguage,
     fastifyLogLevel,
@@ -77,7 +77,7 @@ export const app = async (
     bodyLimit: fastifyBodyLimit,
   })
   server.register(hcPDFOptionsPlugin, {
-    filePath: pdfOptionPresetFilePath,
+    filePath: presetPdfOptionsFilePath,
   })
   server.register(formBody)
   server.register(hcPagesPlugin, {
@@ -110,7 +110,7 @@ export const app = async (
       return
     }
     const pdfOptionsQuery =
-      request.query.pdf_option ?? defaultPdfOptionPresetName
+      request.query.pdf_option ?? defaultPresetPdfOptionsName
     const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(createPDFHttpHeader(buffer))
@@ -130,7 +130,7 @@ export const app = async (
       reply.code(400).send({ error: 'html is required' })
       return
     }
-    const pdfOptionsQuery = body.pdf_option ?? defaultPdfOptionPresetName
+    const pdfOptionsQuery = body.pdf_option ?? defaultPresetPdfOptionsName
     const page = server.getHcPage()
     await page.setContent(html, { waitUntil: ['domcontentloaded'] })
     const pdfOptions = server.getPDFOptions(pdfOptionsQuery)

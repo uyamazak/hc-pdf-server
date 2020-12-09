@@ -6,7 +6,7 @@ export interface PresetPDFOptions {
 export interface PresetPDFOptionsModule {
   PresetPDFOptions: PresetPDFOptions
 }
-interface PresetPDFOptionsConfig {
+interface PresetPDFOptionsLoaderConfig {
   filePath: string
 }
 

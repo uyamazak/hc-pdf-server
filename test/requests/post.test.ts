@@ -3,7 +3,7 @@ import { InjectOptions } from 'light-my-request'
 import { app } from '../../src/app'
 import {
   TEST_POST_HTML,
-  DEFAULT_PDF_OPTION_PRESET_NAME,
+  DEFAULT_PRESET_PDF_OPTIONS_NAME,
 } from '../../src/config'
 
 async function build(t) {
@@ -43,7 +43,7 @@ test('POST request test', async (t) => {
       method: 'POST',
       url: '/',
       body: {
-        pdf_option: DEFAULT_PDF_OPTION_PRESET_NAME,
+        pdf_option: DEFAULT_PRESET_PDF_OPTIONS_NAME,
         html: TEST_POST_HTML,
       },
     } as InjectOptions)
