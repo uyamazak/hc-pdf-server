@@ -149,8 +149,8 @@ vim src/pdf-options/presets/my-preset.ts
 
 # and set env example with dorcker run
 docker run -it -p 8080:8080 \
-  -e HCPDF_PDF_OPTION_PRESET_FILE_PATH='./presets/my-preset' \
-  -e DEFAULT_PDF_OPTION_PRESET_NAME='MYA4' \
+  -e HCPDF_PRESET_PDF_OPTIONS_FILE_PATH='./presets/my-preset' \
+  -e HCPDF_DEFAULT_PRESET_PDF_OPTIONS_NAME='MYA4' \
   hc-pdf-server:latest
 
 # request with pdf_option
