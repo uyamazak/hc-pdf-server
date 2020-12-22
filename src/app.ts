@@ -2,31 +2,21 @@ import fastify, { FastifyInstance } from 'fastify'
 import formBody from 'fastify-formbody'
 import bearerAuthPlugin from 'fastify-bearer-auth'
 import { hcPagesPlugin } from './plugins/hc-pages'
-import { PDFOptionsPreset } from './pdf-options'
+import { hcPDFOptionsPlugin } from './plugins/pdf-options'
+import { AppConfig, getQuerystring, postBody } from './types/hc-pdf-server'
 import {
-  DEFAULT_PDF_OPTION_PRESET_NAME,
+  DEFAULT_PRESET_PDF_OPTIONS_NAME,
   BEARER_AUTH_SECRET_KEY,
   PAGES_NUM,
   USER_AGENT,
   PAGE_TIMEOUT_MILLISECONDS,
-  PDF_OPTION_PRESET_FILE_PATH,
+  PRESET_PDF_OPTIONS_FILE_PATH,
   EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   ACCEPT_LANGUAGE,
   FASTIFY_LOG_LEVEL,
   FASTIFY_BODY_LIMIT,
   DEFAULT_VIEWPORT,
 } from './config'
-import { Viewport } from 'puppeteer'
-
-interface getQuerystring {
-  url: string
-  pdf_option?: string
-}
-
-interface postBody {
-  html: string
-  pdf_option?: string
-}
 
 const getSchema = {
   querystring: {
@@ -50,27 +40,14 @@ const createPDFHttpHeader = (buffer: Buffer) => ({
   Pragma: 'no-cache',
   Expires: 0,
 })
-interface AppConfig {
-  defaultPdfOptionPresetName: string
-  bearerAuthSecretKey: string
-  pagesNum: number
-  userAgent: string
-  pageTimeoutMilliseconds: number
-  pdfOptionPresetFilePath: string
-  emulateMediaTypeScreenEnabled: boolean
-  acceptLanguage: string
-  fastifyLogLevel: string
-  fastifyBodyLimit: number
-  viewport: Viewport
-}
 
 const defaultAppConfig: AppConfig = {
-  defaultPdfOptionPresetName: DEFAULT_PDF_OPTION_PRESET_NAME,
+  presetPdfOptionsFilePath: PRESET_PDF_OPTIONS_FILE_PATH,
+  defaultPresetPdfOptionsName: DEFAULT_PRESET_PDF_OPTIONS_NAME,
   bearerAuthSecretKey: BEARER_AUTH_SECRET_KEY,
   pagesNum: PAGES_NUM,
   userAgent: USER_AGENT,
   pageTimeoutMilliseconds: PAGE_TIMEOUT_MILLISECONDS,
-  pdfOptionPresetFilePath: PDF_OPTION_PRESET_FILE_PATH,
   emulateMediaTypeScreenEnabled: EMULATE_MEDIA_TYPE_SCREEN_ENABLED,
   acceptLanguage: ACCEPT_LANGUAGE,
   fastifyLogLevel: FASTIFY_LOG_LEVEL,
@@ -82,12 +59,12 @@ export const app = async (
   appConfig = {} as Partial<AppConfig>
 ): Promise<FastifyInstance> => {
   const {
-    defaultPdfOptionPresetName,
+    presetPdfOptionsFilePath,
+    defaultPresetPdfOptionsName,
     bearerAuthSecretKey,
     pagesNum,
     userAgent,
     pageTimeoutMilliseconds,
-    pdfOptionPresetFilePath,
     emulateMediaTypeScreenEnabled,
     acceptLanguage,
     fastifyLogLevel,
@@ -95,14 +72,12 @@ export const app = async (
     viewport,
   } = { ...defaultAppConfig, ...appConfig }
 
-  const pdfOptionsPreset = new PDFOptionsPreset({
-    filePath: pdfOptionPresetFilePath,
-  })
-  await pdfOptionsPreset.init()
-
   const server = fastify({
     logger: { level: fastifyLogLevel },
     bodyLimit: fastifyBodyLimit,
+  })
+  server.register(hcPDFOptionsPlugin, {
+    filePath: presetPdfOptionsFilePath,
   })
   server.register(formBody)
   server.register(hcPagesPlugin, {
@@ -135,8 +110,8 @@ export const app = async (
       return
     }
     const pdfOptionsQuery =
-      request.query.pdf_option ?? defaultPdfOptionPresetName
-    const pdfOptions = pdfOptionsPreset.get(pdfOptionsQuery)
+      request.query.pdf_option ?? defaultPresetPdfOptionsName
+    const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(createPDFHttpHeader(buffer))
     reply.send(buffer)
@@ -155,17 +130,17 @@ export const app = async (
       reply.code(400).send({ error: 'html is required' })
       return
     }
-    const pdfOptionsQuery = body.pdf_option ?? defaultPdfOptionPresetName
+    const pdfOptionsQuery = body.pdf_option ?? defaultPresetPdfOptionsName
     const page = server.getHcPage()
     await page.setContent(html, { waitUntil: ['domcontentloaded'] })
-    const pdfOptions = pdfOptionsPreset.get(pdfOptionsQuery)
+    const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
     const buffer = await page.pdf(pdfOptions)
     reply.headers(createPDFHttpHeader(buffer))
     reply.send(buffer)
   })
 
   server.get('/pdf_options', (_, reply) => {
-    reply.send(pdfOptionsPreset.preset)
+    reply.send(server.getPresetPDFOptions())
   })
 
   return server

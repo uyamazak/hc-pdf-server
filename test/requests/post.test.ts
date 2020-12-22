@@ -1,21 +1,16 @@
-import { test, InjectOptions } from 'tap'
+import { test } from 'tap'
+import { InjectOptions } from 'light-my-request'
 import { app } from '../../src/app'
-import { PDFOptionsPreset } from '../../src/pdf-options'
-import { PDF_OPTION_PRESET_FILE_PATH, TEST_POST_HTML } from '../../src/config'
+import {
+  TEST_POST_HTML,
+  DEFAULT_PRESET_PDF_OPTIONS_NAME,
+} from '../../src/config'
 
 async function build(t) {
   const myApp = await app()
   t.tearDown(myApp.close.bind(myApp))
   t.tearDown(async () => await myApp.destoroyHcPages())
   return myApp
-}
-
-async function getFirstPresetName() {
-  const pdfOptionsPreset = new PDFOptionsPreset({
-    filePath: PDF_OPTION_PRESET_FILE_PATH,
-  })
-  await pdfOptionsPreset.init()
-  return Object.keys(pdfOptionsPreset.preset)[0]
 }
 
 test('POST request test', async (t) => {
@@ -42,14 +37,13 @@ test('POST request test', async (t) => {
     t.end()
   })
 
-  t.test('POST / with first preset name', async (t) => {
+  t.test('POST / with default preset name', async (t) => {
     const app = await build(t)
-    const pdfOptionName = await getFirstPresetName()
     const res = await app.inject({
       method: 'POST',
       url: '/',
       body: {
-        pdf_option: pdfOptionName,
+        pdf_option: DEFAULT_PRESET_PDF_OPTIONS_NAME,
         html: TEST_POST_HTML,
       },
     } as InjectOptions)

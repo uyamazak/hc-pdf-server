@@ -1,4 +1,5 @@
-import { test, InjectOptions } from 'tap'
+import { test } from 'tap'
+import { InjectOptions } from 'light-my-request'
 import { app } from '../../src/app'
 import { TEST_POST_HTML, PAGES_NUM } from '../../src/config'
 
