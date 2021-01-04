@@ -1537,10 +1537,10 @@ fastify-bearer-auth@^5.0.2:
   dependencies:
     fastify-plugin "^2.0.0"
 
-fastify-cli@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.6.0.tgz#45ccccc5e9d346220e75b1bb5d15574365cdfe60"
-  integrity sha512-5t3kfktavTkrHop1xQnzVM68PlZ60DZHbCz1A/mxQCzSHJPRkNb6uiG8jHak/5kYY6ifAZuazQ+9GpZ8GkPEHw==
+fastify-cli@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.7.0.tgz#9c1dc99a59ce102b84f65c223fe82dd0719e99b9"
+  integrity sha512-9mS9snGmrtmrkdGaed0s+EWYqRegnWrPhzLCveO3dUJiOTcJrIsMLeas8zjLdKIPFMWASGxzzWErxmB00nEONw==
   dependencies:
     blessed "^0.1.81"
     blessed-contrib "^4.8.18"
