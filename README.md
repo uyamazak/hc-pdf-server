@@ -30,12 +30,18 @@ You need install docker.
 
 https://docs.docker.com/get-docker/
 
+### Build without installing fonts
+
+```zsh
+docker build -t hc-pdf-server:latest .
+```
 
 ### Install Fonts (optionary)
 If you wanto to convert pages in Japanese, Chinese or languages other than English with Docker.
 You will need to install each font files.
 Also, you can use WEB fonts, but since it takes a long time for requesting and downloading them,
 we recommend that install the font files in the server.
+
 
 #### 1. From font file
 Add your font files (ex. *.otf) to `fonts/` dir.
@@ -67,8 +73,6 @@ docker build \
   --build-arg ADDITONAL_FONTS="font-noto-cjk font-ipa" \
   -t hc-pdf-server:latest .
 ```
-
-
 ### Run
 ```zsh
 docker run -it -p 8080:8080 hc-pdf-server:latest
