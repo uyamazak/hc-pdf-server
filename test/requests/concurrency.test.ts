@@ -4,7 +4,9 @@ import { app } from '../../src/app'
 import { TEST_POST_HTML, PAGES_NUM } from '../../src/config'
 
 async function build(t) {
-  const myApp = await app()
+  const myApp = await app({
+    pagesNum: PAGES_NUM,
+  })
   t.tearDown(myApp.close.bind(myApp))
   t.tearDown(async () => await myApp.destoroyHcPages())
   return myApp

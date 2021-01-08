@@ -8,6 +8,7 @@ const BEARER_KEY = 'test-super-secret-key'
 async function build(t) {
   const myApp = await app({
     bearerAuthSecretKey: BEARER_KEY,
+    pagesNum: 1,
   })
   t.tearDown(myApp.close.bind(myApp))
   t.tearDown(async () => await myApp.destoroyHcPages())
