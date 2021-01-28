@@ -2,7 +2,7 @@
 
 # hc-pdf-server
 
-convert HTML to PDF server by Headless Chrome (Chromium).
+convert HTML to PDF server by Headless Chrome.
 
 GET URL or POST HTML returns PDF binary.
 
@@ -113,7 +113,7 @@ yarn start
 
 # Usage
 
-## Get request with url parameter
+## GET request with url parameter
 
 ```zsh
 curl "http://localhost:8080?url=http://example.com" -o hcpdf-get.pdf
@@ -128,7 +128,7 @@ curl -sS http://localhost:8080 -v \
 ```
 [hcpdf-post.pdf](/docs/pdf-samples/hcpdf-post.pdf)
 
-# Change PDF options by preset name
+# Customize PDF options by preset name
 
 The Puppeteer's PDF options are flexible and complex.
 
