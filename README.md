@@ -1,4 +1,5 @@
 [![ci](https://github.com/uyamazak/hc-pdf-server/workflows/ci/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3Aci)
+[![docker](https://github.com/uyamazak/hc-pdf-server/workflows/docker-build/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3Adocker-build)
 
 # hc-pdf-server
 
