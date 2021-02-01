@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - '*.pdf'
   pull_request:
     paths-ignore:
       - 'docs/**'
