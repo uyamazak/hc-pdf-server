@@ -4,13 +4,14 @@ import fp from 'fastify-plugin'
 import { HcPageConfig } from '../types/hc-pages'
 export class HCPages {
   private pages: Page[]
+  private readyPages: Page[]
+  private currentPromises: Promise<unknown>[]
   private config: HcPageConfig
   private browser: Browser
-  public pageNumGenerator: Generator<number>
 
   constructor(config: HcPageConfig) {
     this.config = config
-    this.pageNumGenerator = this.hcPageNumGenerator()
+    this.currentPromises = []
   }
 
   async init(): Promise<void> {
@@ -19,16 +20,36 @@ export class HCPages {
     const browserVersion = await this.browser.version()
     console.log(`browser.verison is ${browserVersion}`)
     this.pages = await this.createPages()
+    this.readyPages = [...this.pages]
   }
 
-  async destoroy(): Promise<void> {
+  async destroy(): Promise<void> {
     await this.closePages()
     await this.closeBrowser()
   }
 
-  getCurrentPage(): Page {
-    const pageNo = this.pageNumGenerator.next().value
-    return this.pages[pageNo]
+  private async runCallback(
+    page: Page,
+    callback: (page: Page) => Buffer
+  ): Promise<Buffer> {
+    const result = await callback(page)
+    this.readyPages.push(page)
+    return result
+  }
+
+  async runOnPage(callback: (page: Page) => Buffer): Promise<Buffer> {
+    let page = this.readyPages.pop()
+    while (!page) {
+      await Promise.race(this.currentPromises)
+      page = this.readyPages.pop()
+    }
+
+    const promise = this.runCallback(page, callback)
+    this.currentPromises.push(promise)
+    const result = await promise
+    this.currentPromises.splice(this.currentPromises.indexOf(promise), 1)
+
+    return result
   }
 
   private generateLaunchOptions(): ChromeArgOptions {
@@ -93,17 +114,6 @@ export class HCPages {
     await this.browser.close()
     console.log('browser is closed')
   }
-
-  *hcPageNumGenerator(): Generator<number> {
-    let pageNum = 0
-    const max = this.config.pagesNum - 1
-    while (true) {
-      if (pageNum > max) {
-        pageNum = 0
-      }
-      yield pageNum++
-    }
-  }
 }
 
 async function plugin(
@@ -113,12 +123,11 @@ async function plugin(
 ) {
   const hcPages = new HCPages(options)
   await hcPages.init()
-  fastify.decorate('getHcPage', () => {
-    const page = hcPages.getCurrentPage()
-    return page
+  fastify.decorate('runOnPage', async (callback) => {
+    return await hcPages.runOnPage(callback)
   })
-  fastify.decorate('destoroyHcPages', async () => {
-    await hcPages.destoroy()
+  fastify.decorate('destroyHcPages', async () => {
+    await hcPages.destroy()
   })
   next()
 }
