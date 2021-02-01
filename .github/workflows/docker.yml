@@ -1,6 +1,9 @@
 name: docker-build
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     paths-ignore:
       - 'docs/**'
