@@ -1,6 +1,7 @@
 import fastify, { FastifyInstance } from 'fastify'
 import formBody from 'fastify-formbody'
 import bearerAuthPlugin from 'fastify-bearer-auth'
+import { Page } from 'puppeteer'
 import { hcPagesPlugin } from './plugins/hc-pages'
 import { hcPDFOptionsPlugin } from './plugins/pdf-options'
 import { AppConfig, getQuerystring, postBody } from './types/hc-pdf-server'
@@ -102,19 +103,23 @@ export const app = async (
       reply.code(400).send({ error: 'url is required' })
       return
     }
-    const page = server.getHcPage()
+
+    const pdfOptionsQuery =
+      request.query.pdf_option ?? defaultPresetPdfOptionsName
     try {
-      await page.goto(url)
+      const buffer = await server.runOnPage(async (page: Page) => {
+        await page.goto(url)
+        const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
+        const buffer = await page.pdf(pdfOptions)
+        return buffer
+      })
+
+      reply.headers(createPDFHttpHeader(buffer))
+      reply.send(buffer)
     } catch (error) {
       reply.code(500).send({ error, url })
       return
     }
-    const pdfOptionsQuery =
-      request.query.pdf_option ?? defaultPresetPdfOptionsName
-    const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
-    const buffer = await page.pdf(pdfOptions)
-    reply.headers(createPDFHttpHeader(buffer))
-    reply.send(buffer)
   })
 
   server.post<{
@@ -131,12 +136,23 @@ export const app = async (
       return
     }
     const pdfOptionsQuery = body.pdf_option ?? defaultPresetPdfOptionsName
-    const page = server.getHcPage()
-    await page.setContent(html, { waitUntil: ['domcontentloaded'] })
     const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
-    const buffer = await page.pdf(pdfOptions)
-    reply.headers(createPDFHttpHeader(buffer))
-    reply.send(buffer)
+
+    try {
+      const buffer = await server.runOnPage(async (page: Page) => {
+        await page.setContent(html, { waitUntil: ['domcontentloaded'] })
+
+        const buffer = await page.pdf(pdfOptions)
+        return buffer
+      })
+
+      reply.headers(createPDFHttpHeader(buffer))
+      reply.send(buffer)
+    } catch (error) {
+      console.error(`werror ${error}`)
+      reply.code(500).send({ error })
+      return
+    }
   })
 
   server.get('/pdf_options', (_, reply) => {
