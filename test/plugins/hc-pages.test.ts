@@ -11,5 +11,6 @@ test('enable options', async (t) => {
     acceptLanguage: 'ja',
   })
   await hcPages.init()
+  t.equal((await hcPages.createPages()).length, pagesNum)
   await hcPages.destroy()
 })

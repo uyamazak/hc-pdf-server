@@ -113,10 +113,10 @@ export const app = async (
         const buffer = await page.pdf(pdfOptions)
         return buffer
       })
-
       reply.headers(createPDFHttpHeader(buffer))
       reply.send(buffer)
     } catch (error) {
+      console.error(`error ${error}`)
       reply.code(500).send({ error, url })
       return
     }
@@ -149,7 +149,7 @@ export const app = async (
       reply.headers(createPDFHttpHeader(buffer))
       reply.send(buffer)
     } catch (error) {
-      console.error(`werror ${error}`)
+      console.error(`error ${error}`)
       reply.code(500).send({ error })
       return
     }

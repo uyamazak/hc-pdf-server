@@ -2,6 +2,8 @@ import { FastifyInstance } from 'fastify'
 import { launch, ChromeArgOptions, Page, Browser } from 'puppeteer'
 import fp from 'fastify-plugin'
 import { HcPageConfig } from '../types/hc-pages'
+type RunOnPageCallback = (page: Page) => Promise<Buffer>
+
 export class HCPages {
   private pages: Page[]
   private readyPages: Page[]
@@ -30,14 +32,14 @@ export class HCPages {
 
   private async runCallback(
     page: Page,
-    callback: (page: Page) => Buffer
+    callback: RunOnPageCallback
   ): Promise<Buffer> {
     const result = await callback(page)
     this.readyPages.push(page)
     return result
   }
 
-  async runOnPage(callback: (page: Page) => Buffer): Promise<Buffer> {
+  async runOnPage(callback: RunOnPageCallback): Promise<Buffer> {
     let page = this.readyPages.pop()
     while (!page) {
       await Promise.race(this.currentPromises)
@@ -123,7 +125,7 @@ async function plugin(
 ) {
   const hcPages = new HCPages(options)
   await hcPages.init()
-  fastify.decorate('runOnPage', async (callback) => {
+  fastify.decorate('runOnPage', async (callback: RunOnPageCallback) => {
     return await hcPages.runOnPage(callback)
   })
   fastify.decorate('destroyHcPages', async () => {
