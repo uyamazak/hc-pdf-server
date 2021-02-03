@@ -1,4 +1,4 @@
-import { Viewport } from 'puppeteer'
+import { Viewport, Page } from 'puppeteer'
 
 interface HcPageConfig {
   pagesNum: number
@@ -9,9 +9,10 @@ interface HcPageConfig {
   viewport?: Viewport
 }
 
+type RunOnPageCallback<T> = (page: Page) => Promise<T>
 declare module 'fastify' {
   interface FastifyInstance {
-    runOnPage(callback: unknown): Buffer
+    runOnPage<T>(callback: RunOnPageCallback<T>): Promise<T>
     destroyHcPages(): Promise<void>
   }
 }

@@ -107,16 +107,16 @@ export const app = async (
     const pdfOptionsQuery =
       request.query.pdf_option ?? defaultPresetPdfOptionsName
     try {
-      const buffer = await server.runOnPage(async (page: Page) => {
+      const buffer = await server.runOnPage<Buffer>(async (page: Page) => {
         await page.goto(url)
         const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
         const buffer = await page.pdf(pdfOptions)
         return buffer
       })
-
       reply.headers(createPDFHttpHeader(buffer))
       reply.send(buffer)
     } catch (error) {
+      console.error(`error ${error}`)
       reply.code(500).send({ error, url })
       return
     }
@@ -139,17 +139,15 @@ export const app = async (
     const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
 
     try {
-      const buffer = await server.runOnPage(async (page: Page) => {
+      const buffer = await server.runOnPage<Buffer>(async (page: Page) => {
         await page.setContent(html, { waitUntil: ['domcontentloaded'] })
-
         const buffer = await page.pdf(pdfOptions)
         return buffer
       })
-
       reply.headers(createPDFHttpHeader(buffer))
       reply.send(buffer)
     } catch (error) {
-      console.error(`werror ${error}`)
+      console.error(`error ${error}`)
       reply.code(500).send({ error })
       return
     }

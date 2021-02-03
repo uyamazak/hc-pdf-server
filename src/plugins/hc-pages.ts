@@ -1,7 +1,8 @@
 import { FastifyInstance } from 'fastify'
 import { launch, ChromeArgOptions, Page, Browser } from 'puppeteer'
 import fp from 'fastify-plugin'
-import { HcPageConfig } from '../types/hc-pages'
+import { HcPageConfig, RunOnPageCallback } from '../types/hc-pages'
+
 export class HCPages {
   private pages: Page[]
   private readyPages: Page[]
@@ -28,16 +29,16 @@ export class HCPages {
     await this.closeBrowser()
   }
 
-  private async runCallback(
+  private async runCallback<T>(
     page: Page,
-    callback: (page: Page) => Buffer
-  ): Promise<Buffer> {
+    callback: RunOnPageCallback<T>
+  ): Promise<T> {
     const result = await callback(page)
     this.readyPages.push(page)
     return result
   }
 
-  async runOnPage(callback: (page: Page) => Buffer): Promise<Buffer> {
+  async runOnPage<T>(callback: RunOnPageCallback<T>): Promise<T> {
     let page = this.readyPages.pop()
     while (!page) {
       await Promise.race(this.currentPromises)
@@ -123,9 +124,12 @@ async function plugin(
 ) {
   const hcPages = new HCPages(options)
   await hcPages.init()
-  fastify.decorate('runOnPage', async (callback) => {
-    return await hcPages.runOnPage(callback)
-  })
+  fastify.decorate(
+    'runOnPage',
+    async (callback: RunOnPageCallback<unknown>) => {
+      return await hcPages.runOnPage(callback)
+    }
+  )
   fastify.decorate('destroyHcPages', async () => {
     await hcPages.destroy()
   })
