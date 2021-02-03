@@ -9,7 +9,7 @@ interface HcPageConfig {
   viewport?: Viewport
 }
 
-type RunOnPageCallback<T = Buffer> = (page: Page) => Promise<T>
+type RunOnPageCallback<T> = (page: Page) => Promise<T>
 declare module 'fastify' {
   interface FastifyInstance {
     runOnPage<T>(callback: RunOnPageCallback<T>): Promise<T>

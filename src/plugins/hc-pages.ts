@@ -124,9 +124,12 @@ async function plugin(
 ) {
   const hcPages = new HCPages(options)
   await hcPages.init()
-  fastify.decorate('runOnPage', async (callback: RunOnPageCallback) => {
-    return await hcPages.runOnPage(callback)
-  })
+  fastify.decorate(
+    'runOnPage',
+    async (callback: RunOnPageCallback<unknown>) => {
+      return await hcPages.runOnPage(callback)
+    }
+  )
   fastify.decorate('destroyHcPages', async () => {
     await hcPages.destroy()
   })
