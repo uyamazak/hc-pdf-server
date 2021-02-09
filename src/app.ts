@@ -157,5 +157,18 @@ export const app = async (
     reply.send(server.getPresetPDFOptions())
   })
 
+  server.get('/testform', (_, reply) => {
+    reply.type('text/html')
+    reply.send(`<html>
+    <title>hc-pdf-server test form</title>
+    <form method="post" action="/">
+      <input type="text" name="pdf_option" value="A3L">
+      <textarea name="html"></textarea>
+      <input type="submit" value="submit"></input>
+    </form>
+    </html>
+    `)
+  })
+
   return server
 }
