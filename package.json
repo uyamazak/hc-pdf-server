@@ -35,7 +35,7 @@
     "fastify-cli": "^2.7.0",
     "fastify-formbody": "^5.0.0",
     "fastify-plugin": "^3.0.0",
-    "puppeteer": "~5.5.0"
+    "puppeteer": "~7.0.4"
   },
   "devDependencies": {
     "@types/node": "^14.14.22",
