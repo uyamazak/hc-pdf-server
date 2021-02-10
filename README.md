@@ -235,6 +235,8 @@ yarn test
 # before you need build image
 docker run hc-pdf-server:latest yarn test
 ```
+# License
+Licensed under [Apache License](LICENSE)
 
 # Contributing
 Pull requests, Issues, [GitHub Sponsors](https://github.com/sponsors/uyamazak/) are welcome.
@@ -247,5 +249,4 @@ Thanks!
 # Author
 [uyamazak](https://github.com/uyamazak)
 
-# License
-Licensed under [Apache License](LICENSE)
+
