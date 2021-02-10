@@ -39,7 +39,9 @@ docker build -t hc-pdf-server:latest .
 
 ### Install Fonts (optionary)
 If you wanto to convert pages in Japanese, Chinese or languages other than English with Docker.
+
 You will need to install each font files.
+
 Also, you can use WEB fonts, but since it takes a long time for requesting and downloading them,
 we recommend that install the font files in the server.
 
@@ -113,7 +115,6 @@ yarn start
 ```
 
 # Usage
-
 ## GET request with url parameter
 
 ```zsh
@@ -122,9 +123,11 @@ curl "http://localhost:8080?url=http://example.com" -o hcpdf-get.pdf
 [hcpdf-get.pdf](/docs/pdf-samples/hcpdf-get.pdf)
 
 ## POST request with html parameter
+`html` parameter should be urlencoded beforehand, as the inclusion of certain characters (e.g. "&") can cause problems.
+
 ```zsh
 curl -sS http://localhost:8080 -v \
-  -d html="<html><p>hcpdf <strong>ok</strong></p></html>"\
+  --data-urlencode html="<html><p>hcpdf <strong>ok</strong></p></html>"\
   -o hcpdf-post.pdf
 ```
 [hcpdf-post.pdf](/docs/pdf-samples/hcpdf-post.pdf)
@@ -236,6 +239,13 @@ docker run hc-pdf-server:latest yarn test
 # Contributing
 Pull requests, Issues, [GitHub Sponsors](https://github.com/sponsors/uyamazak/) are welcome.
 
+# Contributors ✨
+Thanks!
+
+- [salos1982](https://github.com/salos1982)
+
+# Author
+[uyamazak](https://github.com/uyamazak)
 
 # License
 Licensed under [Apache License](LICENSE)
