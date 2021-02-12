@@ -1527,12 +1527,12 @@ fastify-autoload@^3.4.2:
     pkg-up "^3.1.0"
     semver "^7.3.2"
 
-fastify-bearer-auth@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/fastify-bearer-auth/-/fastify-bearer-auth-5.0.2.tgz#51542e31957360fbb9b0da340c1b9bd8689412c9"
-  integrity sha512-0DCOvTZGVadvMzsErpMv5mlwJcHcQ4eVRdRyC4Y88lKmOszKpjndp/dIdM1rRKrsmatMDJ4RjkPMRq6Wm4JnGw==
+fastify-bearer-auth@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/fastify-bearer-auth/-/fastify-bearer-auth-5.1.0.tgz#2245eeffe1c012827852ea102148e0df7cf2b253"
+  integrity sha512-pmHzZv+aOhrhH1hv79vUU1GEcXaru/ppuxpQjGvDeL+zwH+3Zg1hCSbcUh1K9dFW0AaILrMf2l4bwVzYqtrmlQ==
   dependencies:
-    fastify-plugin "^2.0.0"
+    fastify-plugin "^3.0.0"
 
 fastify-cli@^2.7.0:
   version "2.7.0"
@@ -1570,7 +1570,7 @@ fastify-formbody@^5.0.0:
   dependencies:
     fastify-plugin "^2.3.2"
 
-fastify-plugin@^2.0.0, fastify-plugin@^2.3.2:
+fastify-plugin@^2.3.2:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-2.3.4.tgz#b17abdc36a97877d88101fb86ad8a07f2c07de87"
   integrity sha512-I+Oaj6p9oiRozbam30sh39BiuiqBda7yK2nmSPVwDCfIBlKnT8YB3MY+pRQc2Fcd07bf6KPGklHJaQ2Qu81TYQ==

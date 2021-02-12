@@ -31,7 +31,7 @@
   "dependencies": {
     "fastify": "^3.11.0",
     "fastify-autoload": "^3.4.2",
-    "fastify-bearer-auth": "^5.0.2",
+    "fastify-bearer-auth": "^5.1.0",
     "fastify-cli": "^2.7.0",
     "fastify-formbody": "^5.0.0",
     "fastify-plugin": "^3.0.0",
