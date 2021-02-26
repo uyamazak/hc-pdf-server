@@ -60,3 +60,10 @@ export const hcPDFOptionsPlugin = fp(plugin, {
   fastify: '^3.0.0',
   name: 'hc-pdf-options-plugin',
 })
+
+declare module 'fastify' {
+  interface FastifyInstance {
+    getPDFOptions(name?: string): PDFOptions
+    getPresetPDFOptions(): PresetPDFOptions
+  }
+}

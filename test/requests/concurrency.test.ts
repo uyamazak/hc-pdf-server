@@ -8,7 +8,7 @@ async function build(t) {
     pagesNum: PAGES_NUM,
   })
   t.tearDown(myApp.close.bind(myApp))
-  t.tearDown(async () => await myApp.destroyHcPages())
+  t.tearDown(async () => await myApp.destroyPages())
   return myApp
 }
 
