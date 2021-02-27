@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import { launch, ChromeArgOptions, Page, Browser } from 'puppeteer'
+import { launch, BrowserLaunchArgumentOptions, Page, Browser } from 'puppeteer'
 import fp from 'fastify-plugin'
 import { HcPageConfig, RunOnPageCallback } from '../types/hc-pages'
 
@@ -53,7 +53,7 @@ export class HCPages {
     return result
   }
 
-  private generateLaunchOptions(): ChromeArgOptions {
+  private generateLaunchOptions(): BrowserLaunchArgumentOptions {
     return {
       args: [
         '--no-sandbox',
