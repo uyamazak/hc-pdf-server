@@ -1,6 +1,6 @@
 {
   "name": "hc-pdf-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "html to pdf rendering server using Headless Chrome",
   "main": "dist/server.js",
   "directories": {
@@ -32,14 +32,13 @@
     "fastify": "^3.11.0",
     "fastify-autoload": "^3.4.2",
     "fastify-bearer-auth": "^5.0.2",
-    "fastify-cli": "^2.7.0",
+    "fastify-cli": "^2.8.0",
     "fastify-formbody": "^5.0.0",
     "fastify-plugin": "^3.0.0",
-    "puppeteer": "~5.5.0"
+    "puppeteer": "~8.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.22",
-    "@types/puppeteer": "^5.4.2",
     "@types/tap": "^14.10.2",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
