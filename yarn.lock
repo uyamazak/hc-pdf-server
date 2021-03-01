@@ -344,10 +344,10 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/tap@^14.10.2":
-  version "14.10.2"
-  resolved "https://registry.yarnpkg.com/@types/tap/-/tap-14.10.2.tgz#56f3d34cf1aef7c022ffb39d0717e95b2bfac83a"
-  integrity sha512-StS2GGiWZE2UP1O3ffJTlgyaAj2mayURkM4qzTqnDBF7ldXpCYIV9nHm6syute0P1hhcIhHeRDldZsqg4+TthQ==
+"@types/tap@^14.10.3":
+  version "14.10.3"
+  resolved "https://registry.yarnpkg.com/@types/tap/-/tap-14.10.3.tgz#18b55b676616e42215521378176c16d89a82fb1d"
+  integrity sha512-pdibkMTqKxznrLTFRVJdv/zQ8AAvHe9puqiBt9Mp+hrBgs0ZqCsjCj2e6ez8+p39oapyVp491xxw09E732g1Qw==
   dependencies:
     "@types/node" "*"
 
