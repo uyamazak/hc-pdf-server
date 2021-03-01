@@ -116,14 +116,14 @@ yarn start
 ```
 
 # Usage
-## GET request with url parameter
+## GET request '/' with URL parameter
 
 ```zsh
 curl "http://localhost:8080?url=http://example.com" -o hcpdf-get.pdf
 ```
 [hcpdf-get.pdf](/docs/pdf-samples/hcpdf-get.pdf)
 
-## POST request with html parameter
+## POST request '/' with HTML parameter
 `html` parameter should be urlencoded beforehand, as the inclusion of certain characters (e.g. "&") can cause problems.
 
 ```zsh
@@ -205,7 +205,7 @@ In Puppeteer, if you make another request to `Page` during the PDF conversion pr
 
 At present, it seems not to be able to judge whether `Page` is being processed or not.
 
-Therefore, in hc-pdf-server, the error is avoided by preparing two or more `Page` at the time of starting, and using it in order.
+Therefore, in hc-pdf-server, the error is avoided by preparing two or more `Page` at the time of server starting, and using them in order.
 
 The number of starting pages can be changed by env `HCPDF_PAGES_NUM` (default: 3).
 
