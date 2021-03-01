@@ -432,10 +432,10 @@
     "@typescript-eslint/types" "4.15.2"
     eslint-visitor-keys "^2.0.0"
 
-"@uyamazak/fastify-hc-pages@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@uyamazak/fastify-hc-pages/-/fastify-hc-pages-0.2.1.tgz#eedb36cee8181682b2ac4924bcb35166c9db9d40"
-  integrity sha512-QqM1x26KnXpnpSPkuFITHluWGD6PqWKwlGDy+96ywWwWd2NjE7x0yzzpsG6wMH/dZeuivRHsWReTPJ/saNYNtg==
+"@uyamazak/fastify-hc-pages@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@uyamazak/fastify-hc-pages/-/fastify-hc-pages-0.3.0.tgz#9c0a6b6fb1b219f4362d611e8ca2fa5f4a2a10b8"
+  integrity sha512-N1KI/HpbflBRytU6uCgH6e+03HqET/6GF8wxwECNHjWWi533cl+4sGqd/eRRQKQ+ZGl2DMpr3sa3AWemOM4Mpg==
   dependencies:
     fastify-plugin "^3.0.0"
     puppeteer "^8.0.0"
