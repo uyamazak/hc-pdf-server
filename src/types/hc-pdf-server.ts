@@ -1,16 +1,16 @@
 import { Viewport } from 'puppeteer'
 
-interface getQuerystring {
+export interface getQuerystring {
   url: string
   pdf_option?: string
 }
 
-interface postBody {
+export interface postBody {
   html: string
   pdf_option?: string
 }
 
-interface AppConfig {
+export interface AppConfig {
   presetPdfOptionsFilePath: string
   defaultPresetPdfOptionsName: string
   bearerAuthSecretKey: string

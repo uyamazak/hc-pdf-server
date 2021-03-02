@@ -7,9 +7,8 @@ import {
 } from '../../src/config'
 
 async function build(t) {
-  const myApp = await app({ pagesNum: 1 })
+  const myApp = await app({ pagesNum: 2 })
   t.tearDown(myApp.close.bind(myApp))
-  t.tearDown(async () => await myApp.destroyHcPages())
   return myApp
 }
 

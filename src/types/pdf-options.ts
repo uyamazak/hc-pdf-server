@@ -6,13 +6,6 @@ export interface PresetPDFOptions {
 export interface PresetPDFOptionsModule {
   PresetPDFOptions: PresetPDFOptions
 }
-interface PresetPDFOptionsLoaderConfig {
+export interface PresetPDFOptionsLoaderConfig {
   filePath: string
-}
-
-declare module 'fastify' {
-  interface FastifyInstance {
-    getPDFOptions(name?: string): PDFOptions
-    getPresetPDFOptions(): PresetPDFOptions
-  }
 }
