@@ -13,9 +13,9 @@ This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-se
 ## New features compared to hcep-pdf-server
 
 - Writing in TypeScript
-- Use Fasity https://www.fastify.io/ instead of Express for native TypeScript support and speed
-- Use alpine for less image size in Docker
-- You can Change User Agent and Accept Language etc with env
+- Use [Fasity](https://www.fastify.io/) instead of [Express](https://expressjs.com/) for native TypeScript support and fast response
+- Use [alpine](https://hub.docker.com/_/alpine) for less image size in Docker
+- You can Change User Agent and Accept Language etc with environment variables
 - Bearer token authorization Support
 
 # Getting Started
@@ -23,22 +23,23 @@ This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-se
 ## Clone
 git clone this repository.
 
+## Run
 You can try it in 2 ways: 1.`Docker` or 2.`Local`
 
-## 1. Docker
+### 1. Docker
 
-### Requirement
+#### Requirement
 You need install docker.
 
 https://docs.docker.com/get-docker/
 
-### Build without installing fonts
+#### Build without installing fonts
 
 ```zsh
 docker build -t hc-pdf-server:latest .
 ```
 
-### Install Fonts (optionary)
+#### Install Fonts (optionary)
 If you wanto to convert pages in Japanese, Chinese or languages other than English with Docker.
 
 You will need to install each font files.
@@ -47,7 +48,7 @@ Also, you can use WEB fonts, but since it takes a long time for requesting and d
 we recommend that install the font files in the server.
 
 
-#### 1. From font file
+##### 1. From font file
 Add your font files (ex. *.otf) to `fonts/` dir.
 
 ```zsh
@@ -60,7 +61,7 @@ And build image.
 docker build -t hc-pdf-server:latest .
 ```
 
-#### 2. From apk package
+##### 2. From apk package
 You can use build-arg `ADDITONAL_FONTS` as package names.
 
 See below available font package names.
@@ -77,14 +78,14 @@ docker build \
   --build-arg ADDITONAL_FONTS="font-noto-cjk font-ipa" \
   -t hc-pdf-server:latest .
 ```
-### Run
+#### Run docker
 ```zsh
 docker run -it -p 8080:8080 hc-pdf-server:latest
 ```
 
-## 2. Local (for development use)
+### 2. Local (for development use)
 
-### Requirement
+#### Requirement
 You need to install Node.js and yarn.
 
 - [Node.js](https://nodejs.org/)
@@ -202,7 +203,7 @@ This feature uses the following the plugin. Details are below.
 
 https://github.com/fastify/fastify-bearer-auth
 
-# Support for concurrent access error
+# Support for concurrent access
 
 In Puppeteer, if you make another request to `Page` during the PDF conversion process, it will result in an error.
 
