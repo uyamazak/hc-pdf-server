@@ -156,6 +156,9 @@ cp src/pdf-options/presets/my-preset.sample.ts src/pdf-options/presets/my-preset
 # edit
 vim src/pdf-options/presets/my-preset.ts
 
+# build image
+docker build -t hc-pdf-server:latest .
+
 # and set env example with dorcker run
 docker run -it -p 8080:8080 \
   -e HCPDF_PRESET_PDF_OPTIONS_FILE_PATH='./presets/my-preset' \
