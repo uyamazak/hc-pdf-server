@@ -2,10 +2,7 @@
  * @see https://github.com/puppeteer/puppeteer/blob/v5.3.1/docs/api.md#pagepdfoptions
  */
 
-import {
-  PDFMargin,
-  PDFOptions,
-} from 'puppeteer/lib/cjs/puppeteer/common/PDFOptions'
+import { PDFMargin, PDFOptions } from 'puppeteer'
 
 import {
   DEFAULT_PDF_OPTION_FORMAT,

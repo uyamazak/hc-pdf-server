@@ -1,4 +1,4 @@
-import { PaperFormat } from 'puppeteer/lib/cjs/puppeteer/common/PDFOptions'
+import { PaperFormat } from 'puppeteer'
 
 const toBoolean = (val: string | undefined) => {
   return val === 'true'
