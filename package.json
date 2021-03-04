@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/uyamazak/hc-pdf-server#readme",
   "dependencies": {
-    "@uyamazak/fastify-hc-pages": "^0.4.0",
+    "@uyamazak/fastify-hc-pages": "^1.0.0",
     "fastify": "^3.13.0",
     "fastify-autoload": "^3.5.2",
     "fastify-bearer-auth": "^5.1.0",
@@ -42,7 +42,7 @@
     "@types/node": "^14.14.31",
     "@types/tap": "^14.10.3",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
-    "@typescript-eslint/parser": "^4.15.2",
+    "@typescript-eslint/parser": "^4.16.1",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
