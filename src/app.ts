@@ -4,7 +4,7 @@ import bearerAuthPlugin from 'fastify-bearer-auth'
 import { Page } from 'puppeteer'
 import { hcPages } from '@uyamazak/fastify-hc-pages'
 import { hcPDFOptionsPlugin } from './plugins/pdf-options'
-import { AppConfig, getQuerystring, postBody } from './types/hc-pdf-server'
+import { AppConfig, GetQuerystring, PostBody } from './types/hc-pdf-server'
 import {
   DEFAULT_PRESET_PDF_OPTIONS_NAME,
   BEARER_AUTH_SECRET_KEY,
@@ -82,8 +82,8 @@ export const app = async (
   })
   server.register(formBody)
   server.register(hcPages, {
+    pagesNum,
     pageOptions: {
-      pagesNum,
       userAgent,
       pageTimeoutMilliseconds,
       emulateMediaTypeScreenEnabled,
@@ -98,7 +98,7 @@ export const app = async (
   }
 
   server.get<{
-    Querystring: getQuerystring
+    Querystring: GetQuerystring
   }>('/', { schema: getSchema }, async (request, reply) => {
     const { url } = request.query
     if (!url) {
@@ -125,7 +125,7 @@ export const app = async (
   })
 
   server.post<{
-    Body: postBody
+    Body: PostBody
   }>('/', { schema: postSchema }, async (request, reply) => {
     const body = request.body ?? null
     if (!body) {
