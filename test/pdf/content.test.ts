@@ -15,8 +15,8 @@ async function build(t: Test) {
 test('PDF content test', async (t) => {
   t.test('POST / pdf content is match in concurrency requests', async (t) => {
     const app = await build(t)
-    const testArray = Array(30).keys()
-    const requests = Array.from(testArray).map((n: number) => {
+    const testNumbers = Array(30).keys()
+    const requests = Array.from(testNumbers).map((n: number) => {
       return app.inject({
         method: 'POST',
         url: `/?n=${n}`,
@@ -26,7 +26,7 @@ test('PDF content test', async (t) => {
       } as InjectOptions)
     })
     const responses = await Promise.all(requests)
-    for (const n of testArray) {
+    for (const n of testNumbers) {
       const pdfResult = await pdf(responses[n].rawPayload)
       // remove line breaks
       const pdfText = pdfResult.text.trim()
