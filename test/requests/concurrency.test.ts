@@ -3,7 +3,10 @@ import { InjectOptions } from 'light-my-request'
 import { app } from '../../src/app'
 import { TEST_POST_HTML, PAGES_NUM } from '../../src/config'
 
-async function build(t) {
+interface Test {
+  tearDown(cb: unknown): unknown
+}
+async function build(t: Test) {
   const myApp = await app({
     pagesNum: PAGES_NUM,
   })

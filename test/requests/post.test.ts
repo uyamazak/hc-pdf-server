@@ -5,8 +5,10 @@ import {
   TEST_POST_HTML,
   DEFAULT_PRESET_PDF_OPTIONS_NAME,
 } from '../../src/config'
-
-async function build(t) {
+interface Test {
+  tearDown(cb: unknown): unknown
+}
+async function build(t: Test) {
   const myApp = await app({ pagesNum: 2 })
   t.tearDown(myApp.close.bind(myApp))
   return myApp
