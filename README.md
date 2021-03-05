@@ -8,7 +8,8 @@ convert HTML to PDF server by Headless Chrome.
 
 GET URL or POST HTML returns PDF binary.
 
-This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-server/) with TypeScript and new features.
+This is new version of [hcep-pdf-server](https://github.com/uyamazak/hcep-pdf-server/) with buit-in TypeScript supoort and sufficient testing, excellent new feature.
+Of course, Docker is also supported!
 
 ## New features compared to hcep-pdf-server
 
@@ -238,6 +239,8 @@ yarn test
 
 ```zsh
 # before you need build image
+docker build -t hc-pdf-server:latest .
+
 docker run hc-pdf-server:latest yarn test
 ```
 # License

@@ -42,6 +42,7 @@
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
     "@types/node": "^14.14.31",
+    "@types/pdf-parse": "^1.1.0",
     "@types/tap": "^14.10.3",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
@@ -49,6 +50,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
+    "pdf-parse": "^1.1.1",
     "prettier": "^2.2.1",
     "tap": "^14.11.0",
     "ts-node": "^9.1.1",
