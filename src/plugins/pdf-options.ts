@@ -10,22 +10,25 @@ import {
 export class PresetPDFOptionsLoader {
   preset: PresetPDFOptions
   defaultPDFOptions = {} as PDFOptions
-  filePath: string
 
-  constructor(config: PresetPDFOptionsLoaderConfig) {
+  constructor(preset: PresetPDFOptions) {
+    this.preset = preset
+  }
+
+  static async init(
+    config: PresetPDFOptionsLoaderConfig
+  ): Promise<PresetPDFOptionsLoader> {
+    const preset = await this.loadPDFOptionsPreset(config.filePath)
     if (!config.filePath) {
-      throw new Error('filePath is empty')
+      throw new Error('filePath is required')
     }
-    this.preset = {}
-    this.filePath = config.filePath
+    return new PresetPDFOptionsLoader(preset)
   }
 
-  async init(): Promise<void> {
-    this.preset = await this.loadPDFOptionsPreset()
-  }
-
-  async loadPDFOptionsPreset(): Promise<PresetPDFOptions> {
-    const preset = (await import(this.filePath)) as PresetPDFOptionsModule
+  static async loadPDFOptionsPreset(
+    filePath: string
+  ): Promise<PresetPDFOptions> {
+    const preset = (await import(filePath)) as PresetPDFOptionsModule
     return preset.PresetPDFOptions
   }
 
@@ -34,7 +37,7 @@ export class PresetPDFOptionsLoader {
       return this.defaultPDFOptions
     }
     if (!(name in this.preset)) {
-      console.error('PDFOptions not found name:', name)
+      console.error(`PDFOptions not found ${name}, use default.`)
       return this.defaultPDFOptions
     }
     return this.preset[name]
@@ -46,8 +49,7 @@ async function plugin(
   options: PresetPDFOptionsLoaderConfig,
   next: (err?: Error) => void
 ) {
-  const presetPDFOptionsLoader = new PresetPDFOptionsLoader(options)
-  await presetPDFOptionsLoader.init()
+  const presetPDFOptionsLoader = await PresetPDFOptionsLoader.init(options)
   fastify.decorate('getPDFOptions', (name?: string) => {
     return presetPDFOptionsLoader.get(name)
   })
