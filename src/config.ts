@@ -7,7 +7,7 @@ const toNumber = (val: string | undefined) => {
   if (val) {
     return Number(val)
   } else {
-    return null
+    return undefined
   }
 }
 
@@ -36,8 +36,8 @@ export const DEFAULT_PDF_OPTION_LANDSCAPE = toBoolean(
 /**
  * Browser Page
  */
-export const USER_AGENT = process.env.HCPDF_USER_AGENT ?? null
-export const PAGES_NUM = toNumber(process.env.HCPDF_PAGES_NUM ?? '3')
+export const USER_AGENT = process.env.HCPDF_USER_AGENT ?? undefined
+export const PAGES_NUM = toNumber(process.env.HCPDF_PAGES_NUM) ?? 3
 export const PAGE_TIMEOUT_MILLISECONDS = toNumber(
   process.env.HCPDF_PAGE_TIMEOUT_MILLISECONDS ?? '30000'
 )
@@ -47,7 +47,7 @@ export const EMULATE_MEDIA_TYPE_SCREEN_ENABLED = toBoolean(
   process.env.HCPDF_EMULATE_MEDIA_TYPE_SCREEN_ENABLED
 )
 // use as Accept-Language Header https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Accept-Language
-export const ACCEPT_LANGUAGE = process.env.HCPDF_ACCEPT_LANGUAGE ?? null
+export const ACCEPT_LANGUAGE = process.env.HCPDF_ACCEPT_LANGUAGE ?? undefined
 
 /**
  * Server
@@ -55,7 +55,7 @@ export const ACCEPT_LANGUAGE = process.env.HCPDF_ACCEPT_LANGUAGE ?? null
  * https://github.com/fastify/fastify/blob/master/docs/Server.md
  */
 export const SERVER_ADDRESS = process.env.HCPDF_SERVER_ADDRESS ?? '127.0.0.1'
-export const SERVER_PORT = toNumber(process.env.HCPDF_SERVER_PORT ?? '8080')
+export const SERVER_PORT = toNumber(process.env.HCPDF_SERVER_PORT) ?? 8080
 // 10MiB
 export const FASTIFY_BODY_LIMIT = toNumber(
   process.env.HCPDF_FASTIFY_BODY_LIMIT ?? '10485760'
@@ -64,7 +64,7 @@ export const FASTIFY_BODY_LIMIT = toNumber(
 export const FASTIFY_LOG_LEVEL = process.env.HCPDF_FASTIFY_LOG_LEVEL ?? 'info'
 // if set use as key, else disabled
 export const BEARER_AUTH_SECRET_KEY =
-  process.env.HCPDF_BEARER_AUTH_SECRET_KEY ?? null
+  process.env.HCPDF_BEARER_AUTH_SECRET_KEY ?? undefined
 
 /**
  * Testing
@@ -80,8 +80,8 @@ export const TEST_POST_HTML =
  * @see https://pptr.dev/#?product=Puppeteer&version=v5.5.0&show=api-pageviewport
  */
 export const DEFAULT_VIEWPORT = {
-  width: toNumber(process.env.HCPDF_VIEWPORT_WIDTH ?? '800'),
-  height: toNumber(process.env.HCPDF_VIEWPORT_HEIGHT ?? '600'),
+  width: toNumber(process.env.HCPDF_VIEWPORT_WIDTH) ?? 800,
+  height: toNumber(process.env.HCPDF_VIEWPORT_HEIGHT) ?? 600,
   deviceScaleFactor: toNumber(process.env.HCPDF_DEVICE_SCALE_FACTOR),
   isMobile: toBoolean(process.env.HCPDF_VIEWPORT_IS_MOBILE),
   isLandscape: toBoolean(process.env.HCPDF_VIEWPORT_HAS_TOUCH),

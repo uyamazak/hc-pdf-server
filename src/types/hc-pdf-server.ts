@@ -13,13 +13,13 @@ export interface PostBody {
 export interface AppConfig {
   presetPdfOptionsFilePath: string
   defaultPresetPdfOptionsName: string
-  bearerAuthSecretKey: string
-  pagesNum: number
-  userAgent: string
-  pageTimeoutMilliseconds: number
-  emulateMediaTypeScreenEnabled: boolean
-  acceptLanguage: string
-  fastifyLogLevel: string
-  fastifyBodyLimit: number
-  viewport: Viewport
+  bearerAuthSecretKey?: string
+  pagesNum?: number
+  userAgent?: string
+  pageTimeoutMilliseconds?: number
+  emulateMediaTypeScreenEnabled?: boolean
+  acceptLanguage?: string
+  fastifyLogLevel?: string
+  fastifyBodyLimit?: number
+  viewport?: Viewport
 }

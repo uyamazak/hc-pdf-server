@@ -16,6 +16,7 @@ export class PresetPDFOptionsLoader {
     if (!config.filePath) {
       throw new Error('filePath is empty')
     }
+    this.preset = {}
     this.filePath = config.filePath
   }
 
