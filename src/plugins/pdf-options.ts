@@ -37,7 +37,7 @@ export class PresetPDFOptionsLoader {
       return this.defaultPDFOptions
     }
     if (!(name in this.preset)) {
-      console.error('PDFOptions not found name:', name)
+      console.error(`PDFOptions not found ${name}, use default.`)
       return this.defaultPDFOptions
     }
     return this.preset[name]
