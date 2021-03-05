@@ -1,11 +1,11 @@
 import { Viewport } from 'puppeteer'
 
-export interface getQuerystring {
+export interface GetQuerystring {
   url: string
   pdf_option?: string
 }
 
-export interface postBody {
+export interface PostBody {
   html: string
   pdf_option?: string
 }
