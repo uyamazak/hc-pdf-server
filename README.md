@@ -201,7 +201,9 @@ curl "http://localhost:8080/?url=http://example.com" \
   -o hcpdf-auth-get.pdf
 ```
 
-This feature uses the following the plugin. Details are below.
+This feature uses the following the plugin.
+
+Details are below.
 
 https://github.com/fastify/fastify-bearer-auth
 
@@ -217,10 +219,121 @@ The number of starting pages can be changed by env `HCPDF_PAGES_NUM` (default: 3
 
 If you increase the number of pages, the memory required will also increase, so adjust it according to your machine resource.
 
-# Configs by environment variables
+# Configuring with environment variables
+All have a prefix of `'HCPDF_'`
+## PDF Options presets
+Multiple PDF Options can be prepared in advance and used upon request.
+see detail about [PDF options](https://pptr.dev/#?product=Puppeteer&version=v8.0.0&show=api-pagepdfoptions)
 
+### HCPDF_PRESET_PDF_OPTIONS_FILE_PATH
+If the default is not sufficient, please specify your own.
+Specify relative path from `plugins/pdf-options.ts`
+
+default: '../pdf-options/presets/default'
+
+### HCPDF_DEFAULT_PRESET_PDF_OPTIONS_NAME
+defalt key name.
+
+default: 'DEFAULT'
+
+You can change the default items for simple changes such as size and margins
+
+### HCPDF_DEFAULT_PDF_OPTION_FORMAT
+
+Corresponds to `format`
+```
+Letter: 8.5in x 11in
+Legal: 8.5in x 14in
+Tabloid: 11in x 17in
+Ledger: 17in x 11in
+A0: 33.1in x 46.8in
+A1: 23.4in x 33.1in
+A2: 16.54in x 23.4in
+A3: 11.7in x 16.54in
+A4: 8.27in x 11.7in
+A5: 5.83in x 8.27in
+A6: 4.13in x 5.83in
+```
+
+### HCPDF_DEFAULT_PDF_OPTION_MARGIN
+
+Corresponds to all `margin`s
+
+### HCPDF_DEFAULT_PDF_OPTION_PRINT_BACKGROUND
+Corresponds `printBackground`
+
+### HCPDF_DEFAULT_PDF_OPTION_LANDSCAPE
+Corresponds to `landscape`
+
+## Page settings
+### HCPDF_PAGES_NUM
+Allows you to specify the number of pages to be launched when the server starts.
+
+Change the number according to the number of requests and the response speed and server resources.
+
+default: 3
+
+### HCPDF_USER_AGENT
+You can change the User agent string.
+
+default: puppeteer's user agent
+
+### HCPDF_PAGE_TIMEOUT_MILLISECONDS
+Timeout values used in various Page operations.
+see detail [Page.setDefaultTimeout()](https://pptr.dev/#?product=Puppeteer&version=v8.0.0&show=api-pagesetdefaulttimeouttimeout)
+
+default: 10000
+### HCPDF_EMULATE_MEDIA_TYPE_SCREEN_ENABLED
+if 'true', CSS media type set to `screen`
+
+default: false (`print`)
+
+### HCPDF_ACCEPT_LANGUAGE
+Accept-Language can be given at the time of request.
+
+default: ''
+## Server settings
+
+### HCPDF_SERVER_ADDRESS
+
+default: '127.0.0.1'
+
+### HCPDF_SERVER_PORT
+
+default: 8080
+
+### HCPDF_FASTIFY_BODY_LIMIT
+The maximum request size that the server will accept.
+
+default: 10485760 (10MiB)
+
+### HCPDF_BEARER_AUTH_SECRET_KEY
+see [Bearer Authorization](#bearer-authorization)
+
+default: '' (disabled)
+
+
+## Viewport
+see [page.setViewport](https://pptr.dev/#?product=Puppeteer&version=v8.0.0&show=api-pagesetviewportviewport)
+### HCPDF_VIEWPORT_WIDTH
+default: 800
+### HCPDF_VIEWPORT_HEIGHT
+default: 800
+
+### HCPDF_DEVICE_SCALE_FACTOR
+default: 1
+
+### HCPDF_VIEWPORT_IS_MOBILE
+default: false
+
+### HCPDF_VIEWPORT_HAS_TOUCH
+default: false
+### HCPDF_VIEWPORT_IS_LANDSCAPE
+default: false
 ## Others
-Other settings can be changed by environment variables. See the following file for details.
+Other settings can be changed by environment variables.
+
+See the following file for details.
 
 [src/config.ts](src/config.ts)
 

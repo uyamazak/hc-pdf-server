@@ -13,7 +13,7 @@ const toNumber = (val: string | undefined) => {
 
 /**
  * PDFOptions
- * @see
+ * @see https://pptr.dev/#?product=Puppeteer&version=v8.0.0&show=api-pagepdfoptions
  */
 export const PRESET_PDF_OPTIONS_FILE_PATH =
   process.env.HCPDF_PRESET_PDF_OPTIONS_FILE_PATH ??
@@ -42,7 +42,7 @@ export const PAGE_TIMEOUT_MILLISECONDS = toNumber(
   process.env.HCPDF_PAGE_TIMEOUT_MILLISECONDS ?? '30000'
 )
 // 'true' or otherwise
-// @see https://pptr.dev/#?product=Puppeteer&version=v5.5.0&show=api-pageemulatemediatypetype
+// @see https://pptr.dev/#?product=Puppeteer&version=v8.0.0&show=api-pageemulatemediatypetype
 export const EMULATE_MEDIA_TYPE_SCREEN_ENABLED = toBoolean(
   process.env.HCPDF_EMULATE_MEDIA_TYPE_SCREEN_ENABLED
 )
@@ -77,12 +77,12 @@ export const TEST_POST_HTML =
 
 /**
  * Viewport
- * @see https://pptr.dev/#?product=Puppeteer&version=v5.5.0&show=api-pageviewport
+ * @see https://pptr.dev/#?product=Puppeteer&show=api-pageviewport
  */
 export const DEFAULT_VIEWPORT = {
   width: toNumber(process.env.HCPDF_VIEWPORT_WIDTH) ?? 800,
   height: toNumber(process.env.HCPDF_VIEWPORT_HEIGHT) ?? 600,
-  deviceScaleFactor: toNumber(process.env.HCPDF_DEVICE_SCALE_FACTOR),
+  deviceScaleFactor: toNumber(process.env.HCPDF_DEVICE_SCALE_FACTOR) ?? 1,
   isMobile: toBoolean(process.env.HCPDF_VIEWPORT_IS_MOBILE),
   isLandscape: toBoolean(process.env.HCPDF_VIEWPORT_HAS_TOUCH),
   hasTouch: toBoolean(process.env.HCPDF_VIEWPORT_IS_LANDSCAPE),
