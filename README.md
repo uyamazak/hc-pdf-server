@@ -318,7 +318,7 @@ see [page.setViewport](https://pptr.dev/#?product=Puppeteer&version=v8.0.0&show=
 ### HCPDF_VIEWPORT_WIDTH
 default: 800
 ### HCPDF_VIEWPORT_HEIGHT
-default: 800
+default: 600
 
 ### HCPDF_DEVICE_SCALE_FACTOR
 default: 1
