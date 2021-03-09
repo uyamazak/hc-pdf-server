@@ -16,7 +16,6 @@ Of course, Docker is also supported!
 
 - Writing in TypeScript
 - Use [Fasity](https://www.fastify.io/) instead of [Express](https://expressjs.com/) for native TypeScript support and fast response
-- Use [alpine](https://hub.docker.com/_/alpine) for less image size in Docker
 - You can Change User Agent and Accept Language etc with environment variables
 - Bearer token authorization Support
 
@@ -63,21 +62,21 @@ And build image.
 docker build -t hc-pdf-server:latest .
 ```
 
-##### 2. From apk package
+##### 2. From package
 You can use build-arg `ADDITONAL_FONTS` as package names.
 
 See below available font package names.
 
-https://wiki.alpinelinux.org/wiki/Fonts
+https://packages.debian.org/stable/fonts/
 
 ```zsh
 docker build \
-  --build-arg ADDITONAL_FONTS=font-noto-cjk \
+  --build-arg ADDITONAL_FONTS=fonts-ipafont \
   -t hc-pdf-server:latest .
 
 # multiple (split by space)
 docker build \
-  --build-arg ADDITONAL_FONTS="font-noto-cjk font-ipa" \
+  --build-arg ADDITONAL_FONTS="fonts-ipafont fonts-ipaexfont-gothic" \
   -t hc-pdf-server:latest .
 ```
 #### Run docker
