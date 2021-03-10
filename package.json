@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
-    "@types/node": "^14.14.32",
+    "@types/node": "^14.14.33",
     "@types/pdf-parse": "^1.1.0",
     "@types/tap": "^14.10.3",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
