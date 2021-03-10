@@ -15,7 +15,7 @@ async function build(t: Test) {
 test('PDF content test', async (t) => {
   t.test('POST / pdf content is match in concurrency requests', async (t) => {
     const app = await build(t)
-    const testNumbers = Array.from({ length: 50 }, (_, k) => k)
+    const testNumbers = Array.from({ length: 30 }, (_, k) => k)
     const requests = testNumbers.map((n: number) => {
       return app.inject({
         method: 'POST',
