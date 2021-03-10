@@ -26,7 +26,7 @@ test('concurrency access test', async (t) => {
           html: TEST_POST_HTML,
         },
       } as InjectOptions
-      const injects = Array.from(Array(PAGES_NUM).keys()).map(() => {
+      const injects = Array.from({ length: PAGES_NUM }, (_, k) => k).map(() => {
         return app.inject(param)
       })
       const responses = await Promise.all(injects)
@@ -52,9 +52,11 @@ test('concurrency access test 2', async (t) => {
           html: TEST_POST_HTML,
         },
       } as InjectOptions
-      const injects = Array.from(Array(PAGES_NUM * 2).keys()).map(() => {
-        return app.inject(param)
-      })
+      const injects = Array.from({ length: PAGES_NUM * 2 }, (_, k) => k).map(
+        () => {
+          return app.inject(param)
+        }
+      )
       const responses = await Promise.all(injects)
       for (const res of responses) {
         t.equal(res.statusCode, 200)
