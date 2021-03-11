@@ -32,7 +32,7 @@
   "dependencies": {
     "@uyamazak/fastify-hc-pages": "^1.0.2",
     "fastify": "^3.13.0",
-    "fastify-autoload": "^3.5.2",
+    "fastify-autoload": "^3.6.0",
     "fastify-bearer-auth": "^5.1.0",
     "fastify-cli": "^2.8.0",
     "fastify-formbody": "^5.0.0",
