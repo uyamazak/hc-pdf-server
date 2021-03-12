@@ -32,9 +32,7 @@
   "dependencies": {
     "@uyamazak/fastify-hc-pages": "^1.0.2",
     "fastify": "^3.13.0",
-    "fastify-autoload": "^3.5.2",
     "fastify-bearer-auth": "^5.1.0",
-    "fastify-cli": "^2.8.0",
     "fastify-formbody": "^5.0.0",
     "fastify-plugin": "^3.0.0",
     "puppeteer": "^8.0.0"
@@ -50,6 +48,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
+    "fastify-cli": "^2.8.0",
     "pdf-parse": "^1.1.1",
     "prettier": "^2.2.1",
     "tap": "^14.11.0",
