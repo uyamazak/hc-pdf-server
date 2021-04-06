@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
-    "test": "tap --timeout=180 test/**/*.test.ts",
+    "test": "tap --ts --no-check-coverage --timeout=180 test/**/*.test.ts",
     "start": "node dist/src/server.js",
     "dev": "ts-node ./src/server.ts",
     "lint": "eslint --fix ./ --ext ts"
@@ -51,7 +51,7 @@
     "fastify-cli": "^2.9.1",
     "pdf-parse": "^1.1.1",
     "prettier": "^2.2.1",
-    "tap": "^14.11.0",
+    "tap": "^15.0.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   }
