@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
-    "test": "tap --ts --timeout=180 test/**/*.test.ts",
+    "test": "tap --ts --no-check-coverage --timeout=180 test/**/*.test.ts",
     "start": "node dist/src/server.js",
     "dev": "ts-node ./src/server.ts",
     "lint": "eslint --fix ./ --ext ts"
