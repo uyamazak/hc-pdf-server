@@ -41,7 +41,7 @@
     "@tsconfig/node12": "^1.0.7",
     "@types/node": "^14.14.38",
     "@types/pdf-parse": "^1.1.0",
-    "@types/tap": "^14.10.3",
+    "@types/tap": "^15.0.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
