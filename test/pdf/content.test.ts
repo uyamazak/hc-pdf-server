@@ -4,11 +4,11 @@ import { app } from '../../src/app'
 import pdf from 'pdf-parse'
 
 interface Test {
-  tearDown(cb: unknown): unknown
+  teardown(cb: unknown): unknown
 }
 async function build(t: Test) {
   const myApp = await app()
-  t.tearDown(myApp.close.bind(myApp))
+  t.teardown(myApp.close.bind(myApp))
   return myApp
 }
 
