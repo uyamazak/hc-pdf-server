@@ -5,14 +5,14 @@ import { TEST_TARGET_URL } from '../../src/config'
 
 const BEARER_KEY = 'test-super-secret-key'
 interface Test {
-  tearDown(cb: unknown): unknown
+  teardown(cb: unknown): unknown
 }
 async function build(t: Test) {
   const myApp = await app({
     bearerAuthSecretKey: BEARER_KEY,
     pagesNum: 2,
   })
-  t.tearDown(myApp.close.bind(myApp))
+  t.teardown(myApp.close.bind(myApp))
   return myApp
 }
 

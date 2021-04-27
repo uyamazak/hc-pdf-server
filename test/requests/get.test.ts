@@ -7,11 +7,11 @@ import {
 } from '../../src/config'
 
 interface Test {
-  tearDown(cb: unknown): unknown
+  teardown(cb: unknown): unknown
 }
 async function build(t: Test) {
   const myApp = await app({ pagesNum: 2 })
-  t.tearDown(myApp.close.bind(myApp))
+  t.teardown(myApp.close.bind(myApp))
   return myApp
 }
 
