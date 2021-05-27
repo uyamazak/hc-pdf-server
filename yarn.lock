@@ -1267,10 +1267,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dotenv@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
-  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+dotenv@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
+  integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
 
 drawille-blessed-contrib@>=0.0.1:
   version "1.0.0"
@@ -1648,10 +1648,10 @@ fastify-bearer-auth@^5.1.0:
   dependencies:
     fastify-plugin "^3.0.0"
 
-fastify-cli@^2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.10.0.tgz#fc4cde63e120113e0516ad5a130b0eef6e5ed5be"
-  integrity sha512-5uWB9gofQJoMTY6RmERgtPQ7CkmE9I90DIA6hqYPVGnqhhAKcUSkm6R9qsNqvxwQSlePaWPzrJsXJv2a/Qia3Q==
+fastify-cli@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.13.0.tgz#91d72a95f3fd713afd658484420920d74a8f302c"
+  integrity sha512-hNOWlQyht+DTHXxg/NaUeDSKZa5tl5dXunCE2mjbEDyS8pmMHKrbYQg+YHTFkUvdsoc/FG2IxtWYfaqD55XTxA==
   dependencies:
     blessed "^0.1.81"
     blessed-contrib "^4.8.18"
@@ -1659,7 +1659,7 @@ fastify-cli@^2.10.0:
     chokidar "^3.3.1"
     close-with-grace "^1.0.0"
     commist "^1.0.0"
-    dotenv "^8.2.0"
+    dotenv "^10.0.0"
     fastify "^3.0.0"
     generify "^4.0.0"
     help-me "^2.0.0"
