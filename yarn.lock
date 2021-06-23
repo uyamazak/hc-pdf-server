@@ -380,10 +380,10 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
 
-"@types/tap@^15.0.2":
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/@types/tap/-/tap-15.0.2.tgz#92dfeac11b8e8c752f6ad4f7dfa5a0055eab79de"
-  integrity sha512-dF4ITq+B0vY26iSW27ga0xbuzqPRdKd1rJZD9zFKJSHam74CgyEStkVKeHHQThBC0SsmrXQnOvElH3xKKYu33g==
+"@types/tap@^15.0.4":
+  version "15.0.4"
+  resolved "https://registry.yarnpkg.com/@types/tap/-/tap-15.0.4.tgz#6017ace0ca17e04d3a737b910d80573ff72a2fc8"
+  integrity sha512-oOZWq0ySiTxhm9BrHTmYSF5Xh3HbzDv6i4dT/pY55Jm8dAabInT9Nbwtm7Y/G9mArtJqZaukcEq1TlFGG23weA==
   dependencies:
     "@types/node" "*"
 
