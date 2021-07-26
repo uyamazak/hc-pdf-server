@@ -22,4 +22,4 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
       - name: Build and push
-        uses: docker/build-push-action@v2.5.0
+        uses: docker/build-push-action@v2.6.1
