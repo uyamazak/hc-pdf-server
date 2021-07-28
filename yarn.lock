@@ -1677,19 +1677,12 @@ fastify-error@^0.3.0:
   resolved "https://registry.yarnpkg.com/fastify-error/-/fastify-error-0.3.1.tgz#8eb993e15e3cf57f0357fc452af9290f1c1278d2"
   integrity sha512-oCfpcsDndgnDVgiI7bwFKAun2dO+4h84vBlkWsWnz/OUK9Reff5UFoFl241xTiLeHWX/vU9zkDVXqYUxjOwHcQ==
 
-fastify-formbody@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/fastify-formbody/-/fastify-formbody-5.0.0.tgz#dcac930e8fe5c83eb56a6917672bc4b7d2b4b5c4"
-  integrity sha512-W79/hq6xGyV4lFsgt+qgKHPorGu4RzAhFQ5GKXI0T8DbkEMx+7gjFAD2y+q194vMMiIvMhuE7j6JyCEZVMOHYw==
+fastify-formbody@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/fastify-formbody/-/fastify-formbody-5.1.0.tgz#65cccf9792aac1a638927f7150cd1ea30908d8dc"
+  integrity sha512-dLFQ8gMQeLuV45J72svDbrp6CZ3hxsaiK2dd3vzoiCs9wEmCSbbJV+/afQl1cfvf19+NfCIzYVQIg1r4yO4Epw==
   dependencies:
-    fastify-plugin "^2.3.2"
-
-fastify-plugin@^2.3.2:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-2.3.4.tgz#b17abdc36a97877d88101fb86ad8a07f2c07de87"
-  integrity sha512-I+Oaj6p9oiRozbam30sh39BiuiqBda7yK2nmSPVwDCfIBlKnT8YB3MY+pRQc2Fcd07bf6KPGklHJaQ2Qu81TYQ==
-  dependencies:
-    semver "^7.3.2"
+    fastify-plugin "^3.0.0"
 
 fastify-plugin@^3.0.0:
   version "3.0.0"
