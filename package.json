@@ -31,7 +31,7 @@
   "homepage": "https://github.com/uyamazak/hc-pdf-server#readme",
   "dependencies": {
     "@uyamazak/fastify-hc-pages": "^1.0.5",
-    "fastify": "^3.21.0",
+    "fastify": "^3.21.5",
     "fastify-bearer-auth": "^6.0.0",
     "fastify-formbody": "^5.1.0",
     "fastify-plugin": "^3.0.0",
