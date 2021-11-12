@@ -1,5 +1,6 @@
-[![ci](https://github.com/uyamazak/hc-pdf-server/workflows/ci/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3Aci)
-[![docker](https://github.com/uyamazak/hc-pdf-server/workflows/docker-build/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3Adocker-build)
+[![CI](https://github.com/uyamazak/hc-pdf-server/workflows/ci/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3Aci)
+[![Docker](https://github.com/uyamazak/hc-pdf-server/workflows/docker-build/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3Adocker-build)
+[![CodeQL](https://github.com/uyamazak/hc-pdf-server/workflows/CodeQL/badge.svg)](https://github.com/uyamazak/hc-pdf-server/actions?query=workflow%3ACodeQL)
 [![Apache License](https://img.shields.io/badge/license-Apache-blue.svg?style=flat)](LICENSE)
 
 # hc-pdf-server
