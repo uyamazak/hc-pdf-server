@@ -1105,12 +1105,12 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commist@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/commist/-/commist-1.1.0.tgz#17811ec6978f6c15ee4de80c45c9beb77cee35d5"
-  integrity sha512-rraC8NXWOEjhADbZe9QBNzLAN5Q3fsTPQtBV+fEVj6xKIgDgNiEVE6ZNfHpZOqfQ21YUzfVNUXLOEZquYvQPPg==
+commist@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/commist/-/commist-2.0.0.tgz#09b465b6bc9b0afd167b360c2d2c009cd9422c93"
+  integrity sha512-FOz6gc7VRNFV+SYjGv0ZPfgG1afGqJfKg2/aVtiDP6kF1ZPpo7NvUOGHuVNQ2YgMoCVglEUo0O3WzcD63yczVA==
   dependencies:
-    leven "^2.1.0"
+    leven "^3.1.0"
     minimist "^1.1.0"
 
 commondir@^1.0.1:
@@ -1661,21 +1661,21 @@ fastify-bearer-auth@^6.0.0:
   dependencies:
     fastify-plugin "^3.0.0"
 
-fastify-cli@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.13.0.tgz#91d72a95f3fd713afd658484420920d74a8f302c"
-  integrity sha512-hNOWlQyht+DTHXxg/NaUeDSKZa5tl5dXunCE2mjbEDyS8pmMHKrbYQg+YHTFkUvdsoc/FG2IxtWYfaqD55XTxA==
+fastify-cli@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.14.0.tgz#dd826d68e0e6208d112226af3d1cf7dc76d3a5a6"
+  integrity sha512-ahd+b4N60XAe7wklMR8gx2gF/SXPVioVrGT2K9Q6l/kUZdmdJu6Ps86qfgu44ZWYf7+02/pdXrXp/an5HDnXdg==
   dependencies:
     blessed "^0.1.81"
     blessed-contrib "^4.8.18"
     chalk "^4.1.0"
     chokidar "^3.3.1"
     close-with-grace "^1.0.0"
-    commist "^1.0.0"
+    commist "^2.0.0"
     dotenv "^10.0.0"
     fastify "^3.0.0"
     generify "^4.0.0"
-    help-me "^2.0.0"
+    help-me "^3.0.0"
     is-docker "^2.0.0"
     make-promises-safe "^5.0.0"
     pino-colada "^2.0.1"
@@ -1683,7 +1683,7 @@ fastify-cli@^2.13.0:
     pump "^3.0.0"
     resolve-from "^5.0.0"
     semver "^7.3.2"
-    split2 "^3.1.1"
+    split2 "^4.0.0"
     yargs-parser "^20.0.0"
 
 fastify-error@^0.3.0:
@@ -2059,10 +2059,10 @@ hasha@^5.0.0:
     is-stream "^2.0.0"
     type-fest "^0.8.0"
 
-help-me@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/help-me/-/help-me-2.0.1.tgz#5044b80472422c1759bb606d9c5bfefb21fe0d3f"
-  integrity sha512-M0zuH7YG7t6xeLDllblPQkBfuI4MVz1teOJ+JCKBAiOzVXy3FmseeQ87Zt50fM1hTX9627iO/P1oWEwvykGlPQ==
+help-me@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/help-me/-/help-me-3.0.0.tgz#9803c81b5f346ad2bce2c6a0ba01b82257d319e8"
+  integrity sha512-hx73jClhyk910sidBB7ERlnhMlFsJJIBqSVMFDwPN8o2v9nmp5KgLq1Xz1Bf1fCMMZ6mPrX159iG0VLy/fPMtQ==
   dependencies:
     glob "^7.1.6"
     readable-stream "^3.6.0"
@@ -2499,10 +2499,10 @@ lcov-parse@^1.0.0:
   resolved "https://registry.yarnpkg.com/lcov-parse/-/lcov-parse-1.0.0.tgz#eb0d46b54111ebc561acb4c408ef9363bdc8f7e0"
   integrity sha1-6w1GtUER68VhrLTECO+TY73I9+A=
 
-leven@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/leven/-/leven-2.1.0.tgz#c2e7a9f772094dee9d34202ae8acce4687875580"
-  integrity sha1-wuep93IJTe6dNCAq6KzORoeHVYA=
+leven@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
+  integrity sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==
 
 levn@^0.4.1:
   version "0.4.1"
@@ -3584,12 +3584,17 @@ spawn-wrap@^2.0.0:
     signal-exit "^3.0.2"
     which "^2.0.1"
 
-split2@^3.0.0, split2@^3.1.1:
+split2@^3.0.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/split2/-/split2-3.2.2.tgz#bf2cf2a37d838312c249c89206fd7a17dd12365f"
   integrity sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==
   dependencies:
     readable-stream "^3.0.0"
+
+split2@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/split2/-/split2-4.1.0.tgz#101907a24370f85bb782f08adaabe4e281ecf809"
+  integrity sha512-VBiJxFkxiXRlUIeyMQi8s4hgvKCSjtknJv/LVYbrgALPwf5zSKmEwV9Lst25AkvMDnvxODugjdl6KZgwKM1WYQ==
 
 sprintf-js@~1.0.2:
   version "1.0.3"
