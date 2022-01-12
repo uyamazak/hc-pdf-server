@@ -32,7 +32,7 @@
   "dependencies": {
     "@uyamazak/fastify-hc-pages": "^1.0.6",
     "fastify": "^3.24.0",
-    "fastify-bearer-auth": "^6.0.0",
+    "fastify-bearer-auth": "^6.1.0",
     "fastify-formbody": "^5.2.0",
     "fastify-plugin": "^3.0.0",
     "puppeteer": "^11.0.0"
