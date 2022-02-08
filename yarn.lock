@@ -518,10 +518,10 @@
     "@typescript-eslint/types" "4.33.0"
     eslint-visitor-keys "^2.0.0"
 
-"@uyamazak/fastify-hc-pages@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@uyamazak/fastify-hc-pages/-/fastify-hc-pages-1.0.6.tgz#1c752fc8699e1f436efd62095f9a8236a8a1b739"
-  integrity sha512-6gfIULu+sU9pRaHss+OnAMXiXrbR/bwJZ1dl439uHYRMcK0gD5rhAsQS1MTZwkytpTdirOm3e9zagv3UKw6V6Q==
+"@uyamazak/fastify-hc-pages@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@uyamazak/fastify-hc-pages/-/fastify-hc-pages-1.0.8.tgz#372df042f41dec9946ab363e0c36fedd99b32f01"
+  integrity sha512-7LHmpKKy/ftB3iGQ0pi2GZeBdBdfgY4K3+zeIqxylNYiGod4A8/NneOK8smHxtL4FQGXlS5X260M/+5mkwQgkA==
   dependencies:
     fastify-plugin "^3.0.0"
     puppeteer "^11.0.0"
@@ -2118,7 +2118,6 @@ import-fresh@^3.0.0, import-fresh@^3.2.1:
 
 "import-jsx@github:isaacs/import-jsx":
   version "4.0.0"
-  uid ece90f14b08390adef8cc7cf42a757ab121d991a
   resolved "https://codeload.github.com/isaacs/import-jsx/tar.gz/ece90f14b08390adef8cc7cf42a757ab121d991a"
   dependencies:
     "@babel/core" "^7.5.5"
@@ -3743,15 +3742,15 @@ tap@^15.1.6:
   resolved "https://registry.yarnpkg.com/tap/-/tap-15.1.6.tgz#dc393e17bead934a2ee734d6124928694f2da2db"
   integrity sha512-TN7xH6Q2tUPTd6qwmkhuFJcx1vUR8e4dDUpBKc61G0krOzne7Ia6aKIFb8O/0kVazachSSuVME1V8nQ2xwWL8w==
   dependencies:
-    "@isaacs/import-jsx" "*"
-    "@types/react" "*"
+    "@isaacs/import-jsx" "^4.0.1"
+    "@types/react" "^17"
     chokidar "^3.3.0"
     coveralls "^3.0.11"
     findit "^2.0.0"
     foreground-child "^2.0.0"
     fs-exists-cached "^1.0.0"
     glob "^7.1.6"
-    ink "*"
+    ink "^3.2.0"
     isexe "^2.0.0"
     istanbul-lib-processinfo "^2.0.2"
     jackspeak "^1.4.1"
@@ -3760,7 +3759,7 @@ tap@^15.1.6:
     mkdirp "^1.0.4"
     nyc "^15.1.0"
     opener "^1.5.1"
-    react "*"
+    react "^17.0.2"
     rimraf "^3.0.0"
     signal-exit "^3.0.6"
     source-map-support "^0.5.16"
@@ -3768,7 +3767,7 @@ tap@^15.1.6:
     tap-parser "^10.0.1"
     tap-yaml "^1.0.0"
     tcompare "^5.0.7"
-    treport "*"
+    treport "^3.0.2"
     which "^2.0.2"
 
 tar-fs@2.1.1:
