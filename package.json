@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/uyamazak/hc-pdf-server#readme",
   "dependencies": {
-    "@uyamazak/fastify-hc-pages": "^1.0.8",
+    "@uyamazak/fastify-hc-pages": "1.0.9",
     "fastify": "^3.27.0",
     "fastify-bearer-auth": "^6.1.0",
     "fastify-formbody": "^5.2.0",
@@ -38,7 +38,7 @@
     "puppeteer": "^11.0.0"
   },
   "devDependencies": {
-    "@tsconfig/node12": "^1.0.9",
+    "@tsconfig/node12": "^1.0.6",
     "@types/node": "^17.0.13",
     "@types/pdf-parse": "^1.1.1",
     "@types/tap": "^15.0.5",
