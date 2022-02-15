@@ -1653,10 +1653,10 @@ fast-safe-stringify@^2.0.8:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz#c406a83b6e70d9e35ce3b30a81141df30aeba884"
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
-fastify-bearer-auth@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/fastify-bearer-auth/-/fastify-bearer-auth-6.1.0.tgz#906780002e32b556fbc3dce3e14861896812fd32"
-  integrity sha512-qplgYoQ1OipyAMwSlAQVxEhlRnBtYukF6sLmxmfBqFgCdHPkvpZ0gL/AsQfpKFt31wlq4fuHZIymMNaWHVfgcA==
+fastify-bearer-auth@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/fastify-bearer-auth/-/fastify-bearer-auth-6.2.0.tgz#5155609b65b13e4bf866b28a51e0b8e2cb223e23"
+  integrity sha512-RZn679VIgBCVIrgtPLO01Z+1XBZKMmHmf+fvLBfh+H8R2adgJgPeJcGzg4+hEfzcDLAvncGCUdQzBZAw2eO7cA==
   dependencies:
     fastify-plugin "^3.0.0"
 
