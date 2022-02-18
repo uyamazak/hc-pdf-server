@@ -154,7 +154,7 @@ export const app = async (
 
     try {
       const buffer = await server.runOnPage<Buffer>(async (page: Page) => {
-        await page.setContent(html, { waitUntil: ['networkidle0'] })
+        await page.setContent(html, { waitUntil: ['domcontentloaded'] })
         const buffer = await page.pdf(pdfOptions)
         return buffer
       })
