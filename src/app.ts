@@ -88,16 +88,20 @@ export const app = async (
     filePath: presetPdfOptionsFilePath,
   })
   server.register(formBody)
+  const pageOptions = {
+    userAgent,
+    pageTimeoutMilliseconds,
+    emulateMediaTypeScreenEnabled,
+    acceptLanguage,
+    viewport,
+  }
+  console.debug('pageOptions:', pageOptions)
+  const launchOptions = buildBrowserLaunchArgs()
+  console.debug('launchOptions:', launchOptions)
   server.register(hcPages, {
     pagesNum,
-    pageOptions: {
-      userAgent,
-      pageTimeoutMilliseconds,
-      emulateMediaTypeScreenEnabled,
-      acceptLanguage,
-      viewport,
-    },
-    launchOptions: buildBrowserLaunchArgs(),
+    pageOptions,
+    launchOptions,
   })
 
   if (bearerAuthSecretKey) {

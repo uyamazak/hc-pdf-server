@@ -91,5 +91,4 @@ export const DEFAULT_VIEWPORT = {
 const DEFAULT_BROWSER_LAUNCH_ARGS =
   '--no-sandbox --disable-setuid-sandbox --disable-gpu --disable-dev-shm-usage'
 export const BROWSER_LAUNCH_ARGS =
-  process.env.HCEP_DEFAULT_DEFAULT_BROWSER_LAUNCH_ARGS ??
-  DEFAULT_BROWSER_LAUNCH_ARGS
+  process.env.HCEP_DEFAULT_BROWSER_LAUNCH_ARGS ?? DEFAULT_BROWSER_LAUNCH_ARGS
