@@ -332,7 +332,7 @@ default: false
 default: false
 
 ## Browser Launch Options
-### HCEP_DEFAULT_DEFAULT_BROWSER_LAUNCH_ARGS
+### HCEP_DEFAULT_BROWSER_LAUNCH_ARGS
 `args` of browser launch options. Space separated needed.
 
 default: '--no-sandbox --disable-setuid-sandbox --disable-gpu --disable-dev-shm-usage'
