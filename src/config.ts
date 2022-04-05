@@ -1,4 +1,4 @@
-import { PaperFormat } from 'puppeteer'
+import { PaperFormat, BrowserLaunchArgumentOptions } from 'puppeteer'
 
 const toBoolean = (val: string | undefined) => {
   return val === 'true'
@@ -87,3 +87,9 @@ export const DEFAULT_VIEWPORT = {
   isLandscape: toBoolean(process.env.HCPDF_VIEWPORT_HAS_TOUCH),
   hasTouch: toBoolean(process.env.HCPDF_VIEWPORT_IS_LANDSCAPE),
 }
+
+const DEFAULT_BROWSER_LAUNCH_ARGS =
+  '--no-sandbox --disable-setuid-sandbox --disable-gpu --disable-dev-shm-usage'
+export const BROWSER_LAUNCH_ARGS =
+  process.env.HCEP_DEFAULT_DEFAULT_BROWSER_LAUNCH_ARGS ??
+  DEFAULT_BROWSER_LAUNCH_ARGS
