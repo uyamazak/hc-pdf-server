@@ -1,7 +1,7 @@
 import fastify, { FastifyInstance } from 'fastify'
 import formBody from 'fastify-formbody'
 import bearerAuthPlugin from 'fastify-bearer-auth'
-import { Page } from 'puppeteer'
+import { Page, BrowserLaunchArgumentOptions } from 'puppeteer'
 import { hcPages } from '@uyamazak/fastify-hc-pages'
 import { hcPDFOptionsPlugin } from './plugins/pdf-options'
 import { AppConfig, GetQuerystring, PostBody } from './types/hc-pdf-server'
@@ -17,6 +17,7 @@ import {
   FASTIFY_LOG_LEVEL,
   FASTIFY_BODY_LIMIT,
   DEFAULT_VIEWPORT,
+  BROWSER_LAUNCH_ARGS,
 } from './config'
 
 const getSchema = {
@@ -56,6 +57,12 @@ const defaultAppConfig: AppConfig = {
   viewport: DEFAULT_VIEWPORT,
 }
 
+const buildBrowserLaunchArgs = (): BrowserLaunchArgumentOptions => {
+  return {
+    args: BROWSER_LAUNCH_ARGS.split(' '),
+  }
+}
+
 export const app = async (
   appConfig = {} as Partial<AppConfig>
 ): Promise<FastifyInstance> => {
@@ -90,6 +97,7 @@ export const app = async (
       acceptLanguage,
       viewport,
     },
+    launchOptions: buildBrowserLaunchArgs(),
   })
 
   if (bearerAuthSecretKey) {
