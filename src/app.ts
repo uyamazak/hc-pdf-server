@@ -59,7 +59,7 @@ const defaultAppConfig: AppConfig = {
 
 const buildBrowserLaunchArgs = (): BrowserLaunchArgumentOptions => {
   return {
-    args: BROWSER_LAUNCH_ARGS.split(' '),
+    args: BROWSER_LAUNCH_ARGS.trim().split(','),
   }
 }
 

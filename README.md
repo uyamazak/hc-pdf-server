@@ -333,9 +333,9 @@ default: false
 
 ## Browser Launch Options
 ### HCEP_DEFAULT_BROWSER_LAUNCH_ARGS
-`args` of browser launch options. Space separated needed.
+`args` of browser launch options. Comma separated string needed.
 
-default: '--no-sandbox --disable-setuid-sandbox --disable-gpu --disable-dev-shm-usage'
+default: '--no-sandbox,--disable-setuid-sandbox,--disable-gpu,--disable-dev-shm-usage'
 
 see [puppeteer.launch](https://pptr.dev/#?product=Puppeteer&version=v13.5.2&show=api-puppeteerlaunchoptions)
 
