@@ -1,4 +1,4 @@
-import { PaperFormat, BrowserLaunchArgumentOptions } from 'puppeteer'
+import { PaperFormat } from 'puppeteer'
 
 const toBoolean = (val: string | undefined) => {
   return val === 'true'
