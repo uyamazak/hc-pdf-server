@@ -33,7 +33,7 @@
     "@uyamazak/fastify-hc-pages": "1.0.10",
     "fastify": "^3.29.0",
     "fastify-bearer-auth": "^6.2.0",
-    "fastify-formbody": "^5.2.0",
+    "fastify-formbody": "^5.3.0",
     "fastify-plugin": "^3.0.1",
     "puppeteer": "^13.3.2"
   },
