@@ -1470,12 +1470,20 @@ fast-safe-stringify@^2.0.8:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz#c406a83b6e70d9e35ce3b30a81141df30aeba884"
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
-fastify-bearer-auth@^6.2.0:
+"fastify-bearer-auth-deprecated@npm:fastify-bearer-auth@6.2.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/fastify-bearer-auth/-/fastify-bearer-auth-6.2.0.tgz#5155609b65b13e4bf866b28a51e0b8e2cb223e23"
   integrity sha512-RZn679VIgBCVIrgtPLO01Z+1XBZKMmHmf+fvLBfh+H8R2adgJgPeJcGzg4+hEfzcDLAvncGCUdQzBZAw2eO7cA==
   dependencies:
     fastify-plugin "^3.0.0"
+
+fastify-bearer-auth@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/fastify-bearer-auth/-/fastify-bearer-auth-6.3.0.tgz#58b34e2fc9c950453266dc3390fac8a00cb2b27b"
+  integrity sha512-vSv/mwG2agmeNLLIktaBOxt8RmBWfUa+5ttTd7N2KQcc8WwdSUjofj4epy/ep9GJzpbGT9smRd61c9fLTcaz5Q==
+  dependencies:
+    fastify-bearer-auth-deprecated "npm:fastify-bearer-auth@6.2.0"
+    process-warning "^1.0.0"
 
 fastify-cli@^3.1.0:
   version "3.1.0"
