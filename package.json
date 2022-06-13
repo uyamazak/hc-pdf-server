@@ -38,7 +38,7 @@
     "puppeteer": "^13.3.2"
   },
   "devDependencies": {
-    "@tsconfig/node12": "^1.0.9",
+    "@tsconfig/node12": "^1.0.10",
     "@types/node": "^17.0.39",
     "@types/pdf-parse": "^1.1.1",
     "@types/tap": "^15.0.7",
