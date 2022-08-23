@@ -1,6 +1,6 @@
 import fastify, { FastifyInstance } from 'fastify'
-import formBody from 'fastify-formbody'
-import bearerAuthPlugin from 'fastify-bearer-auth'
+import formBody from '@fastify/formbody'
+import bearerAuthPlugin from '@fastify/bearer-auth'
 import { Page, BrowserLaunchArgumentOptions } from 'puppeteer'
 import { hcPages } from '@uyamazak/fastify-hc-pages'
 import { hcPDFOptionsPlugin } from './plugins/pdf-options'
