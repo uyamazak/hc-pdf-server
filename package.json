@@ -1,6 +1,6 @@
 {
   "name": "hc-pdf-server",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "html to pdf rendering server using Headless Chrome",
   "main": "dist/server.js",
   "directories": {
