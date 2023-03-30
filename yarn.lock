@@ -1639,10 +1639,10 @@ fast-uri@^2.0.0, fast-uri@^2.1.0:
   resolved "https://registry.yarnpkg.com/fast-uri/-/fast-uri-2.1.0.tgz#9279432d6b53675c90116b947ed2bbba582d6fb5"
   integrity sha512-qKRta6N7BWEFVlyonVY/V+BMLgFqktCUV0QjT259ekAIlbVrMaFnFLxJ4s/JPl4tou56S1BzPufI60bLe29fHA==
 
-fastify-cli@^5.7.0:
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-5.7.0.tgz#2075f794c7023ea4a50b961ae5f901832d8d5209"
-  integrity sha512-mLQfyA1oAtK70voA9eYnYVVKAuKdSWkfcrj93EmX2b+sAMynPIbItqAajBXrPCMvARPgdJ3aHSANdyY8OLFhWg==
+fastify-cli@^5.7.1:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-5.7.1.tgz#2563718df61f91c9d3a4a5416d91d96454f2a862"
+  integrity sha512-0FgQux1TK+zsRxVLDCF4F+x2ilHDeaJB2TouHIHWRS0+cM6aC+bBSqHva/myrlZs/1lQCAe294DvZkAuJyHySw==
   dependencies:
     "@fastify/deepmerge" "^1.2.0"
     chalk "^4.1.2"
@@ -1662,12 +1662,7 @@ fastify-cli@^5.7.0:
     semver "^7.3.5"
     yargs-parser "^21.1.1"
 
-fastify-plugin@^4.0.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-4.4.0.tgz#ce9fab1352390199c3d55569fea43779699b58ae"
-  integrity sha512-ovwFQG2qNy3jcCROiWpr94Hs0le+c7N/3t7m9aVwbFhkxcR/esp2xu25dP8e617HpQdmeDv+gFX4zagdUhDByw==
-
-fastify-plugin@^4.5.0:
+fastify-plugin@^4.0.0, fastify-plugin@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-4.5.0.tgz#8b853923a0bba6ab6921bb8f35b81224e6988d91"
   integrity sha512-79ak0JxddO0utAXAQ5ccKhvs6vX2MGyHHMMsmZkBANrq3hXc1CHzvNPHOcvTsVMEPl5I+NT+RO4YKMGehOfSIg==
