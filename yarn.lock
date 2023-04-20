@@ -450,10 +450,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@puppeteer/browsers@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@puppeteer/browsers/-/browsers-0.3.1.tgz#21d43c49f6f8bb5fa905b322d73c11fca9b515bd"
-  integrity sha512-WTFVqWY7ipI+CsJRb6vEddYJ/lMl2bHYP5BjFDBM9JMKPjJNT4psXz6DLuJpi3EkG80Q0ef5Azzv3gKu9MvMUg==
+"@puppeteer/browsers@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@puppeteer/browsers/-/browsers-0.4.1.tgz#fae81939adb743420cc2466f3aa37481f7081712"
+  integrity sha512-4IICvy1McAkT/HyNZHIs7sp8ngBX1dmO0TPQ+FWq9ATQMqI8p+Ulm5A3kS2wYDh5HDHHkYrrETOu6rlj64VuTw==
   dependencies:
     debug "4.3.4"
     extract-zip "2.0.1"
@@ -3172,11 +3172,12 @@ punycode@^2.0.0, punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer-core@19.8.1:
-  version "19.8.1"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-19.8.1.tgz#c592db9c524d418c91b9dd6d3f3dac00b9834901"
-  integrity sha512-7yPMzusYRvJ/laLaMFIQ01E9WakKkJJXLsMAymH6y5EKqYe5hhn68/SbvF+1YJMb843GftU7gT86Fw8y5jkn3w==
+puppeteer-core@19.10.0:
+  version "19.10.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-19.10.0.tgz#f92d60693be370ea9a927d7b1ad62704681608ea"
+  integrity sha512-F6btgaEJXcpdw/kJszBhe7t4kx1C42oG159romCagX8ttComuk5dqkmAd/AQc/E4cS3onOUsHI5WgjIstuYsFw==
   dependencies:
+    "@puppeteer/browsers" "0.4.1"
     chromium-bidi "0.4.6"
     cross-fetch "3.1.5"
     debug "4.3.4"
@@ -3188,17 +3189,17 @@ puppeteer-core@19.8.1:
     unbzip2-stream "1.4.3"
     ws "8.13.0"
 
-puppeteer@^19.7.5, puppeteer@^19.8.2:
-  version "19.8.2"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-19.8.2.tgz#e8a3a9aa725b5d445f97454cf13ad9007709576b"
-  integrity sha512-LPdNVYMR6ddp4YS3GK1bqKsasCJj1aZjt9dNOKcnzKezuMoishlHY6bCnFLjTc34iqnGzIrJp07TQ9M+aML2+g==
+puppeteer@^19.10.0, puppeteer@^19.7.5:
+  version "19.10.0"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-19.10.0.tgz#d018e42b189c79da10a6b568a16f1c971219d700"
+  integrity sha512-u2ftBcAu1cL5x2uKD5FLhHkN60Z1d5T0iMftiUEyRfdwT0poObRvjpc69F0HbtN/7lFeW2v+VN4pgeVVSOZYWg==
   dependencies:
-    "@puppeteer/browsers" "0.3.1"
+    "@puppeteer/browsers" "0.4.1"
     cosmiconfig "8.1.3"
     https-proxy-agent "5.0.1"
     progress "2.0.3"
     proxy-from-env "1.1.0"
-    puppeteer-core "19.8.1"
+    puppeteer-core "19.10.0"
 
 queue-microtask@^1.2.2:
   version "1.2.3"
