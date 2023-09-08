@@ -330,6 +330,15 @@ default: false
 default: false
 ### HCPDF_VIEWPORT_IS_LANDSCAPE
 default: false
+
+## Browser Launch Options
+### HCEP_DEFAULT_BROWSER_LAUNCH_ARGS
+`args` of browser launch options. Comma separated string needed.
+
+default: '--no-sandbox,--disable-setuid-sandbox,--disable-gpu,--disable-dev-shm-usage'
+
+see [puppeteer.launch](https://pptr.dev/#?product=Puppeteer&version=v13.5.2&show=api-puppeteerlaunchoptions)
+
 ## Others
 Other settings can be changed by environment variables.
 

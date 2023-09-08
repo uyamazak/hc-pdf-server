@@ -60,7 +60,7 @@ async function plugin(
 }
 
 export const hcPDFOptionsPlugin = fp(plugin, {
-  fastify: '^3.0.0',
+  fastify: '^4.0.0',
   name: 'hc-pdf-options-plugin',
 })
 

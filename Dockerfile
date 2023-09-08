@@ -1,5 +1,5 @@
 # https://github.com/uyamazak/hc-pdf-server
-FROM node:15-buster-slim as package_install
+FROM --platform=linux/amd64 node:18-buster-slim as package_install
 LABEL maintainer="uyamazak<yu.yamazaki85@gmail.com>"
 COPY package.json yarn.lock /app/
 WORKDIR /app
@@ -9,7 +9,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 RUN ["yarn", "install", "--frozen-lockfile"]
 
 
-FROM node:15-buster-slim
+FROM --platform=linux/amd64 node:18-buster-slim
 # Fastify in docker needs 0.0.0.0
 # https://github.com/fastify/fastify/issues/935
 ENV HCPDF_SERVER_ADDRESS=0.0.0.0
