@@ -34,7 +34,7 @@
     "fastify": "^4.23.1",
     "@fastify/bearer-auth": "^9.0.0",
     "@fastify/formbody": "^7.4.0",
-    "fastify-plugin": "^4.5.0",
+    "fastify-plugin": "^4.5.1",
     "puppeteer": "^19.8.2"
   },
   "devDependencies": {
