@@ -47,7 +47,7 @@
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.0.0",
     "fastify-cli": "^5.7.1",
     "pdf-parse": "^1.1.1",
     "prettier": "^3.0.3",
