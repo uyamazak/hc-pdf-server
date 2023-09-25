@@ -38,19 +38,16 @@
     "puppeteer": "^19.8.2"
   },
   "devDependencies": {
-    "@tsconfig/node12": "^1.0.11",
     "@types/node": "^20.6.0",
     "@types/pdf-parse": "^1.1.1",
     "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.49.0",
-    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^5.0.0",
     "fastify-cli": "^5.7.1",
     "pdf-parse": "^1.1.1",
-    "prettier": "^3.0.3",
     "tap": "^16.3.8",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
