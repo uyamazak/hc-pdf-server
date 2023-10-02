@@ -145,12 +145,24 @@ export const app = async (
       return
     }
     const html = body.html ?? ''
+    const header = body.header ?? false
+    const footer = body.footer ?? false
     if (!html) {
       reply.code(400).send({ error: 'html is required' })
       return
     }
     const pdfOptionsQuery = body.pdf_option ?? defaultPresetPdfOptionsName
     const pdfOptions = server.getPDFOptions(pdfOptionsQuery)
+
+    if (header) {
+      pdfOptions.displayHeaderFooter = true
+      pdfOptions.headerTemplate = header
+    }
+
+    if (footer) {
+      pdfOptions.displayHeaderFooter = true
+      pdfOptions.footerTemplate = footer
+    }
 
     try {
       const buffer = await server.runOnPage<Buffer>(async (page: Page) => {

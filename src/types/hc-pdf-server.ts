@@ -8,6 +8,8 @@ export interface GetQuerystring {
 export interface PostBody {
   html: string
   pdf_option?: string
+  header?: string
+  footer?: string
 }
 
 export interface AppConfig {
