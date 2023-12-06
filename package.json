@@ -35,7 +35,7 @@
     "@fastify/bearer-auth": "^9.0.0",
     "@fastify/formbody": "^7.4.0",
     "fastify-plugin": "^4.5.0",
-    "puppeteer": "^19.8.2"
+    "puppeteer": "^21.6.0"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.11",
