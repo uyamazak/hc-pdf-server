@@ -46,7 +46,7 @@
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.0.0",
     "fastify-cli": "^5.7.1",
     "pdf-parse": "^1.1.1",
